@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Id:</b>
+  <%= @avaliacao.id %>
+</p>
+
+<p>
+  <b>Usuario:</b>
+  <%= @avaliacao.usuario_id %>
+</p>
+
+<p>
+  <b>Empresa:</b>
+  <%= @avaliacao.empresa_id %>
+</p>
+
+<p>
+  <b>Situacao avaliacao:</b>
+  <%= @avaliacao.situacao_avaliacao_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_avaliacao_path(@avaliacao) %> |
+<%= link_to 'Back', avaliacaos_path %>

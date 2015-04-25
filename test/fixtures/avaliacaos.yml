@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1
+  usuario_id: 1
+  empresa_id: 1
+  situacao_avaliacao_id: 1
+
+two:
+  id: 1
+  usuario_id: 1
+  empresa_id: 1
+  situacao_avaliacao_id: 1
