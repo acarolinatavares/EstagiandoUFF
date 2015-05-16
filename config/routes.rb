@@ -1,4 +1,7 @@
 EstagiandoUFF::Application.routes.draw do
+
+  root :to => "usuarios#home"
+
   resources :usuarios
 
 
