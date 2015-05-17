@@ -1,6 +1,10 @@
-<h1>Editing empresa</h1>
+<% content_for :content do %>
+    <section id="main-content">
+      <section class="wrapper">
+        <h1>Editar Empresa</h1>
 
-<%= render 'form' %>
+        <%= render 'form' %>
 
-<%= link_to 'Show', @empresa %> |
-<%= link_to 'Back', empresas_path %>
+      </section>
+    </section>
+<% end %>

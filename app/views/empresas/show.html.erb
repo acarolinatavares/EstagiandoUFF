@@ -1,15 +1,15 @@
-<p id="notice"><%= notice %></p>
+<% content_for :content do %>
+    <section id="main-content">
+      <section class="wrapper">
+        <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Id:</b>
-  <%= @empresa.id %>
-</p>
+        <p>
+          <b>Nome:</b>
+          <%= @empresa.nome %>
+        </p>
 
-<p>
-  <b>Nome:</b>
-  <%= @empresa.nome %>
-</p>
-
-
-<%= link_to 'Edit', edit_empresa_path(@empresa) %> |
-<%= link_to 'Back', empresas_path %>
+        <%= link_to 'Editar', edit_empresa_path(@empresa) %> |
+        <%= link_to 'Voltar', empresas_path %>
+      </section>
+    </section>
+<% end %>

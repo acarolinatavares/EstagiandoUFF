@@ -1,5 +1,11 @@
-<h1>New empresa</h1>
+<% content_for :content do %>
+    <section id="main-content">
+      <section class="wrapper">
+        <h1>Cadastro de Empresa</h1>
 
-<%= render 'form' %>
+        <%= render 'form' %>
 
-<%= link_to 'Back', empresas_path %>
+        <%= link_to 'Back', empresas_path %>
+      </section>
+    </section>
+<% end %>

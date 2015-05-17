@@ -8,7 +8,7 @@ EstagiandoUFF::Application.routes.draw do
   resources :comentarios
 
 
-  resources :avaliacaos
+  resources :avaliacoes
 
 
   resources :situacao_avaliacaos
