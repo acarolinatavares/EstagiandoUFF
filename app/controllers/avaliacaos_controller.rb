@@ -1,6 +1,6 @@
 class AvaliacaosController < ApplicationController
-  # GET /avaliacaos
-  # GET /avaliacaos.json
+  # GET /avaliacoes
+  # GET /avaliacoes.json
   def index
     @avaliacaos = Avaliacao.all
 
@@ -10,8 +10,8 @@ class AvaliacaosController < ApplicationController
     end
   end
 
-  # GET /avaliacaos/1
-  # GET /avaliacaos/1.json
+  # GET /avaliacoes/1
+  # GET /avaliacoes/1.json
   def show
     @avaliacao = Avaliacao.find(params[:id])
 
@@ -21,8 +21,8 @@ class AvaliacaosController < ApplicationController
     end
   end
 
-  # GET /avaliacaos/new
-  # GET /avaliacaos/new.json
+  # GET /avaliacoes/new
+  # GET /avaliacoes/new.json
   def new
     @avaliacao = Avaliacao.new
 
@@ -32,13 +32,13 @@ class AvaliacaosController < ApplicationController
     end
   end
 
-  # GET /avaliacaos/1/edit
+  # GET /avaliacoes/1/edit
   def edit
     @avaliacao = Avaliacao.find(params[:id])
   end
 
-  # POST /avaliacaos
-  # POST /avaliacaos.json
+  # POST /avaliacoes
+  # POST /avaliacoes.json
   def create
     @avaliacao = Avaliacao.new(params[:avaliacao])
 
@@ -53,8 +53,8 @@ class AvaliacaosController < ApplicationController
     end
   end
 
-  # PUT /avaliacaos/1
-  # PUT /avaliacaos/1.json
+  # PUT /avaliacoes/1
+  # PUT /avaliacoes/1.json
   def update
     @avaliacao = Avaliacao.find(params[:id])
 
@@ -69,8 +69,8 @@ class AvaliacaosController < ApplicationController
     end
   end
 
-  # DELETE /avaliacaos/1
-  # DELETE /avaliacaos/1.json
+  # DELETE /avaliacoes/1
+  # DELETE /avaliacoes/1.json
   def destroy
     @avaliacao = Avaliacao.find(params[:id])
     @avaliacao.destroy
