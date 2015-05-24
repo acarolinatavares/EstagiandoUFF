@@ -36,14 +36,14 @@ class UsuariosController < ApplicationController
   end
 
   def cadastro_efetuado
-      binding.pry
+
   end
 
   def create
     @usuario = Usuario.new(params[:usuario])
 
       if @usuario.save
-        redirect_to cadastro_efetuado_usuarios_path(@usuario)
+        redirect_to cadastro_efetuado_usuarios_path
       end
   end
 
