@@ -1,7 +1,15 @@
 <% content_for :content do %>
+
     <section id="main-content">
       <section class="wrapper">
-        <h1>Empresas</h1>
+
+        <h1><i class="fa fa-building-o fa-lg"></i> Empresas</h1>
+
+
+        <ol class="breadcrumb" style="margin-top: 30px;">
+          <li><i class="fa fa-home"></i><a href="<% root_path %>">Início</a></li>
+          <li><i class="fa fa-building"></i>Empresas</li>
+        </ol>
 
         <div class="row">
           <div class="col-lg-12">
@@ -33,7 +41,8 @@
 
         <br />
 
-        <%= link_to 'Cadastrar Nova Empresa', new_empresa_path %>
+        <a class="btn btn-success" href="<%= new_empresa_path %>"><i class="fa fa-plus"></i> Nova Empresa</a>
+
       </section>
     </section>
 <% end %>
