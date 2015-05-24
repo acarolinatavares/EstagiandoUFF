@@ -35,18 +35,16 @@ class UsuariosController < ApplicationController
     @usuario = Usuario.find(params[:id])
   end
 
+  def cadastro_efetuado
+      binding.pry
+  end
+
   def create
     @usuario = Usuario.new(params[:usuario])
 
-    respond_to do |format|
       if @usuario.save
-        format.html { redirect_to @usuario, notice: 'Usuario was successfully created.' }
-        format.json { render json: @usuario, status: :created, location: @usuario }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @usuario.errors, status: :unprocessable_entity }
+        redirect_to cadastro_efetuado_usuarios_path(@usuario)
       end
-    end
   end
 
   def update

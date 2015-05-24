@@ -2,7 +2,11 @@ EstagiandoUFF::Application.routes.draw do
 
   root :to => "usuarios#home"
 
-  resources :usuarios
+  resources :usuarios do
+    collection do
+      get 'cadastro_efetuado'
+    end
+  end
 
 
   resources :comentarios
@@ -11,7 +15,7 @@ EstagiandoUFF::Application.routes.draw do
   resources :avaliacoes
 
 
-  resources :situacao_avaliacaos
+  resources :SituacaoAvaliacoesController
 
 
   resources :empresas

@@ -1,6 +1,6 @@
-class CreateSituacaoAvaliacaos < ActiveRecord::Migration
+class CreateSituacaoavaliacoes < ActiveRecord::Migration
   def change
-    create_table :situacao_avaliacaos do |t|
+    create_table :situacao_avaliacoes do |t|
       t.integer :id
       t.string :descricao
 

@@ -1,65 +1,15 @@
 <% content_for :content do %>
     <section id="main-content">
       <section class="wrapper">
-
-        <h1><i class="fa fa-building-o fa-lg"></i> <%= @empresa.nome %></h1>
-
-        <ol class="breadcrumb" style="margin-top: 30px;">
-          <li><i class="fa fa-home"></i><a href="<%= root_path %>">Início</a></li>
-          <li><i class="fa fa-building"></i><a href="<%= empresas_path %>">Empresas</a></li>
-          <li><i class="fa fa-arrow-right"></i><%= @empresa.nome %></li>
-        </ol>
-
         <p id="notice"><%= notice %></p>
 
-        <div class="row">
-          <div class="col-lg-12">
-            <section class="panel">
-              <div class="panel-body">
+        <p>
+          <b>Nome:</b>
+          <%= @empresa.nome %>
+        </p>
 
-                <h2 style="margin-top: 0px;">Dados da Empresa</h2>
-
-                <p style="font-size: 12pt;">
-                  <b>Nome:</b>
-                  <%= @empresa.nome %>
-                </p>
-
-                <p style="font-size: 12pt;">
-                  <b>Email:</b>
-                  <%= @empresa.email %>
-                </p>
-
-                <p style="font-size: 12pt;">
-                  <b>Site:</b>
-                  <a href="<%= @empresa.site %>" target="_blank"><%= @empresa.site %></a>
-                </p>
-
-              </div>
-            </section>
-          </div>
-        </div>
-
-        <% #TODO if empresa has avaliacoes %>
-
-        <div class="row" style="margin-top: -10px;">
-          <div class="col-lg-12">
-            <section class="panel">
-              <div class="panel-body">
-
-                <h2 style="margin-top: 0px;">Avaliações desta Empresa</h2>
-
-
-              </div>
-            </section>
-          </div>
-        </div>
-
-
-        <div class="btn-group">
-            <a class="btn btn-primary" href="<%= edit_empresa_path(@empresa) %>"><i class="fa fa-pencil-square-o"></i> Editar Empresa</a>
-            <a class="btn btn-success" href="<%= empresas_path %>"><i class="fa fa-reply"></i> Voltar</a>
-        </div>
-
+        <%= link_to 'Editar', edit_empresa_path(@empresa) %> |
+        <%= link_to 'Voltar', empresas_path %>
       </section>
     </section>
 <% end %>
