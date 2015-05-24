@@ -84,10 +84,10 @@
 
         <script>
 
-            $("#empresa_site").focusin( function () {
+            $("#empresa_site").on('keyup click change', function () {
 
-                        if ($(this).val != "") {
-                            $(this).val("http://");
+                        if ($(this).val().substr(0,7) != "http://") {
+                            $(this).val( "http://" + $(this).val().substr(7));
                         }
                     }
 
