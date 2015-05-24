@@ -1,7 +1,7 @@
 class UsuariosController < ApplicationController
 
   def home
-
+    @usuario = Usuario.new
   end
 
   def index
@@ -42,9 +42,11 @@ class UsuariosController < ApplicationController
   def create
     @usuario = Usuario.new(params[:usuario])
 
+    respond_to do |format|
       if @usuario.save
-        redirect_to cadastro_efetuado_usuarios_path
+        format.html { redirect_to cadastro_efetuado_usuarios_path, notice: @usuario.email }
       end
+    end
   end
 
   def update

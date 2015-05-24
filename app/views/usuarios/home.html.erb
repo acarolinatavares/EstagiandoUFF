@@ -51,28 +51,28 @@
                 <p style="margin-top: 5px;">Faça já o seu cadastro no <b>EstagiandoUFF</b>.</p>
                 <p style="margin-bottom: 20px;">Por ser um sistema exclusivo para alunos da UFF, você deve efetuar seu cadastro usando seu email <b>@id.uff.br</b></p>
 
-                <%= form_tag(usuarios_path, :class => 'form-horizontal') do -%>
+                <%= form_for(@usuario, :html => {:class => "form-horizontal"}) do |f|%>
                   <div class="form-group">
                     <label for="cadastroNome" class="col-lg-2 control-label">Nome</label>
                     <div class="col-lg-10">
-                      <%= text_field_tag 'nome', nil, class: 'form-control', :placeholder => 'Nome'%>
+                      <%= f.text_field :nome, :class => 'form-control', :placeholder => 'Nome' %>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="cadastroEmail" class="col-lg-2 control-label">Email</label>
                     <div class="col-lg-10">
-                      <%= text_field_tag 'email', nil, class: 'form-control', :placeholder => 'Email'%>
+                      <%= f.text_field :email, :class => 'form-control', :placeholder => 'Email' %>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="cadastroSenha" class="col-lg-2 control-label">Senha</label>
                     <div class="col-lg-10">
-                      <%= password_field_tag 'senha', nil, class: 'form-control', :placeholder => 'Senha'%>
+                      <%= f.password_field :senha, :class => 'form-control', :placeholder => 'Senha' %>
                     </div>
                   </div>
                   <div class="form-group">
                     <div style="text-align: center">
-                      <%= submit_tag "Cadastrar", :class => 'btn btn-success'%>
+                      <%= f.submit "Cadastrar", :class => 'btn btn-success'%>
                     </div>
                   </div>
                 <% end -%>
