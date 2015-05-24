@@ -4,30 +4,35 @@
   <div class="col-xs-12 col-lg-6">
     <section class="panel">
       <div class="panel-body">
-        <h2 style="margin-top: 0; margin-bottom: 20px">Cadastrando uma Empresa</h2>
+
+        <% if @empresa.new_record? %>
+
         <p>O primeiro passo ao cadastrar uma empresa é se certificar que a mesma não está em nosso banco de dados.
           Faça uma busca em nossa <a href="<% empresas_path %>">lista de empresas</a>.
           Caso você não encontre a empresa, é hora de ir para o próximo passo.</p>
         <p>Para adicionar uma empresa ao <b>EstagiandoUFF</b> os únicos dados exigidos são o nome da empresa e a cidade onde ela está
          localizada, mas você também pode adicionar dados de contato, como email e telefone. Além disso,
           você pode fazer o upload da logomarca da empresa.</p>
+
+        <% end %>
+
         <h3 style="font-size: 14pt;">Regras Gerais</h3>
         <ul>
           <li>
             <b>Nome</b>: entre apenas com o nome fantasia da empresa. Não é necessário adicionar sufixos como <i>LTDA</i> ou <i>S/A</i>.
-            <br><span style="font-size: 9.5pt;color: #B0ADAD;"><b>Exemplo</b>: Microsoft (correto) | Microsoft Informática LTDA. (incorreto)<span>
+            <br><span style="font-size: 9.5pt;color: #B0ADAD;"><b>Exemplo</b>: Microsoft (correto) | Microsoft Informática LTDA. (incorreto)</span>
           </li>
           <li>
             <b>Telefone</b>: é obrigatório adicionar o DDD do telefone. A UFF possui campi em áreas de DDDs diferentes, logo essa informação é necessária.
-            <br><span style="font-size: 9.5pt;color: #B0ADAD;"><b>Exemplo</b>: (21) 3333-4444 (correto) | 3333-4444 (incorreto)<span>
+            <br><span style="font-size: 9.5pt;color: #B0ADAD;"><b>Exemplo</b>: (21) 3333-4444 (correto) | 3333-4444 (incorreto)</span>
           </li>
           <li>
             <b>Email:</b>: preferencialmente, adicione o email de contato geral da empresa, não de um contato específico.
-            <br><span style="font-size: 9.5pt;color: #B0ADAD;"><b>Exemplo</b>: contato@google.com (correto) | marcelo@google.com (incorreto)<span>
+            <br><span style="font-size: 9.5pt;color: #B0ADAD;"><b>Exemplo</b>: contato@google.com (correto) | marcelo@google.com (incorreto)</span>
           </li>
           <li>
             <b>Site:</b>: adicione a raiz do site da empresa, não alguma página interna.
-            <br><span style="font-size: 9.5pt;color: #B0ADAD;"><b>Exemplo</b>: http://www.nvidia.com.br (correto) | http://www.nvidia.com.br/page/home.html (incorreto)<span>
+            <br><span style="font-size: 9.5pt;color: #B0ADAD;"><b>Exemplo</b>: http://www.nvidia.com.br (correto) | http://www.nvidia.com.br/page/home.html (incorreto)</span>
           </li>
         </ul>
       </div>
