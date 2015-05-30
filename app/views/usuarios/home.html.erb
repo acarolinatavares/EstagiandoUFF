@@ -35,9 +35,10 @@
 
 
               </div>
-            </section></div>
+            </section>
+          </div>
 
-
+          <% if !logged_in? %>
           <div class="col-xs-6 col-lg-4">
 
             <ul class="nav nav-tabs">
@@ -52,26 +53,25 @@
                 <p style="margin-top: 5px;">Faça login utilizando seu email <b>@id.uff.br</b>.</p>
                 <p style="margin-bottom: 20px;">Se essa for a sua primeira visita ao <b>EstagiandoUFF</b>, será necessário realizar um <a href="<% new_usuario_path %>">cadastro</a>.</p>
 
-                <form class="form-horizontal" role="form">
+                <%= form_for :session, :url=> sign_in_path, :html => {:class => "form-horizontal"} do |ff| %>
                   <div class="form-group">
                     <label for="loginEmail" class="col-lg-2 control-label">Email</label>
                     <div class="col-lg-10">
-                      <input type="email" class="form-control" id="loginEmail" placeholder="Email">
+                      <%= ff.email_field :email, autofocus: true, :class=> "form-control", :placeholder=>"Email" %>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="loginSenha" class="col-lg-2 control-label">Senha</label>
                     <div class="col-lg-10">
-                      <input type="password" class="form-control" id="loginSenha" placeholder="Senha">
+                      <%= ff.password_field :senha, autocomplete: "off", :class=> "form-control", :placeholder=>"Senha" %>
                     </div>
                   </div>
                   <div class="form-group">
                     <div style="text-align: center">
-                      <button type="submit" class="btn btn-primary">Entrar</button>
+                      <%= ff.submit "Entrar" %>
                     </div>
                   </div>
-                </form>
-
+              <% end %>
 
               </div>
 
@@ -106,9 +106,8 @@
                 <% end -%>
               </div>
             </div>
-
           </div>
-
+          <% end %>
         </div>
 
 
