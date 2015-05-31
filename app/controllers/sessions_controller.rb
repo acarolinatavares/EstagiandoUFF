@@ -8,8 +8,17 @@ class SessionsController < ApplicationController
   def create
     @usuario = Usuario.where(:email=> params[:session][:email].downcase).first
     if @usuario && @usuario.senha == params[:session][:senha]
-      sign_in(@usuario)
-      redirect_to current_user
+      if @usuario.email_confirmed
+        sign_in(@usuario)
+        redirect_to current_user
+      else
+        flash.now[:error] = 'Please activate your account by following the
+        instructions in the account confirmation email you received to proceed'
+        redirect_to root_path
+      end
+    else
+      flash.now[:error] = 'Email e/ou senha incorretos.'
+      redirect_to root_path
     end
   end
 

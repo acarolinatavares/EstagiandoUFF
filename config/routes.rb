@@ -10,6 +10,9 @@ EstagiandoUFF::Application.routes.draw do
     collection do
       get 'cadastro_efetuado'
     end
+    member do
+      get :confirm_email
+    end
   end
 
 

@@ -44,6 +44,7 @@ class UsuariosController < ApplicationController
 
     respond_to do |format|
       if @usuario.save
+        UserMailer.registration_confirmation(@usuario).deliver
         format.html { redirect_to cadastro_efetuado_usuarios_path, notice: @usuario.email }
       end
     end
@@ -70,6 +71,18 @@ class UsuariosController < ApplicationController
     respond_to do |format|
       format.html { redirect_to usuarios_url }
       format.json { head :no_content }
+    end
+  end
+
+  def confirm_email
+    @usuario = Usuario.find_by_confirm_token(params[:id])
+    if @usuario
+      @usuario.email_activate
+      flash[:success] = "Welcome to the Sample App! Your email has been confirmed. Please sign in to continue."
+      redirect_to root_path
+    else
+      flash[:error] = "Sorry. User does not exist"
+      redirect_to root_url
     end
   end
 end

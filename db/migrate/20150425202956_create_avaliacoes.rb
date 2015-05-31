@@ -1,4 +1,4 @@
-class Createavaliacoes < ActiveRecord::Migration
+class CreateAvaliacoes < ActiveRecord::Migration
   def change
     create_table :avaliacoes do |t|
       t.integer :id
