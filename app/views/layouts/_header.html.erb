@@ -4,7 +4,7 @@
 </div>
 
 <!--logo start-->
-<a href="index.html" class="logo"><img src="images/logo.png" style="margin-top:-12px;"></span></a>
+<a href="index.html" class="logo"><img src="images/logo.png" style="margin-top:-12px;"></a>
 <!--logo end-->
 
 <!--<div class="nav search-row" id="top_menu">-->
@@ -22,7 +22,7 @@
 <div class="top-nav notification-row">
 <!-- notificatoin dropdown start-->
 <ul class="nav pull-right top-menu">
-
+<% if logged_in? %>
 <!-- inbox notificatoin start-->
 <li id="mail_notificatoin_bar" class="dropdown">
   <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -135,7 +135,6 @@
 </li>
 <!-- alert notification end-->
 <!-- user login dropdown start-->
-<% if logged_in? %>
 <li class="dropdown">
   <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
