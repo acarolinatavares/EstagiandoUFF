@@ -33,7 +33,6 @@ class EmpresasController < ApplicationController
   end
 
   def create
-    binding.pry
     @empresa = Empresa.new(params[:empresa])
 
     respond_to do |format|

@@ -6,4 +6,8 @@ class Empresa < ActiveRecord::Base
   #validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png"]
 
   has_many :avaliacoes
+
+  scope :empresas_tokeninput, lambda{ |busca|
+    Empresa.where("empresas.nome LIKE ?", "%#{busca}%")
+  }
 end

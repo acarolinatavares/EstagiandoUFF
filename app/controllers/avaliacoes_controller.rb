@@ -1,6 +1,5 @@
 class AvaliacoesController < ApplicationController
-  # GET /avaliacoes
-  # GET /avaliacoes.json
+
   def index
     @avaliacoes = Avaliacao.all
 
@@ -10,8 +9,6 @@ class AvaliacoesController < ApplicationController
     end
   end
 
-  # GET /avaliacoes/1
-  # GET /avaliacoes/1.json
   def show
     @avaliacao = Avaliacao.find(params[:id])
 
@@ -21,8 +18,6 @@ class AvaliacoesController < ApplicationController
     end
   end
 
-  # GET /avaliacoes/new
-  # GET /avaliacoes/new.json
   def new
     @avaliacao = Avaliacao.new
 
@@ -32,13 +27,10 @@ class AvaliacoesController < ApplicationController
     end
   end
 
-  # GET /avaliacoes/1/edit
   def edit
     @avaliacao = Avaliacao.find(params[:id])
   end
 
-  # POST /avaliacoes
-  # POST /avaliacoes.json
   def create
     @avaliacao = Avaliacao.new(params[:avaliacao])
 
@@ -53,8 +45,6 @@ class AvaliacoesController < ApplicationController
     end
   end
 
-  # PUT /avaliacoes/1
-  # PUT /avaliacoes/1.json
   def update
     @avaliacao = Avaliacao.find(params[:id])
 
@@ -69,8 +59,6 @@ class AvaliacoesController < ApplicationController
     end
   end
 
-  # DELETE /avaliacoes/1
-  # DELETE /avaliacoes/1.json
   def destroy
     @avaliacao = Avaliacao.find(params[:id])
     @avaliacao.destroy
@@ -78,6 +66,22 @@ class AvaliacoesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to avaliacoes_url }
       format.json { head :no_content }
+    end
+  end
+
+  def autocomplete_empresas
+    lista = []
+    if params[:q].size >= 3
+      empresas = Usuario.empresas_tokeninput(params[:q])
+      empresas.each do |empresa|
+        nome = empresa.nome
+        lista.push :id => empresa.id,
+                   :name => nome.truncate(30),
+                   :img_src => nil
+      end
+    end
+    respond_to do |format|
+      format.json { render :json => lista }
     end
   end
 end

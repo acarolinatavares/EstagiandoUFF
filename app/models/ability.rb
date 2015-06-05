@@ -9,6 +9,8 @@ class Ability
     else
       can :read, :all
 
+      can :autocomplete_empresas, Avaliacao
+
       can :create, Empresa
 
       can :create, Usuario

@@ -4,6 +4,8 @@ EstagiandoUFF::Application.routes.draw do
   post 'sign_in' => 'sessions#create'
   delete 'sign_out' => 'sessions#destroy'
 
+  get 'autocomplete_empresas' => 'avaliacoes#autocomplete_empresas'
+
   root :to => "usuarios#home"
 
   resources :usuarios do
