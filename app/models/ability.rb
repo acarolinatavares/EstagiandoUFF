@@ -5,10 +5,16 @@ class Ability
 
     can :create, Usuario
 
+    can :read, :all
+
     if !usuario.nil? && usuario.administrador?
       can :manage, :all
     else
       can :read, :all
+
+      can :create, Empresa
+
+      can :create, Avaliacao
 
       can :autocomplete_empresas, Avaliacao
 

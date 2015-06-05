@@ -4,6 +4,7 @@ gem 'rails', '3.2.21'
 gem 'mysql2'
 gem "paperclip"
 gem "cancan"
+gem "chartkick"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

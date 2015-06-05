@@ -1,6 +1,18 @@
-<h1>Editing avaliacao</h1>
+<% content_for :content do %>
 
-<%= render 'form' %>
+    <h1><i class="fa fa-star-o fa-lg"></i> Editar Avaliação</h1>
 
-<%= link_to 'Show', @avaliacao %> |
-<%= link_to 'Back', avaliacoes_path %>
+    <ol class="breadcrumb" style="margin-top: 30px; margin-bottom: 0px !important;">
+      <li><i class="fa fa-home"></i><a href="<%= root_path %>">Início</a></li>
+      <li><i class="fa fa-building"></i><a href="<%= avaliacoes_path %>">Avaliações</a></li>
+      <li><i class="fa fa-edit"></i>Editar Avaliação</li>
+    </ol>
+
+    <br>
+
+
+
+    <%= render 'form' %>
+
+<% end %>
+

@@ -19,64 +19,73 @@
           <div class="panel-body" style="padding-bottom: 30px;">
             <h2>Contratação</h2>
 
-            <div class="col-lg-12">
-              <label class="col-lg-2 control-label" style="margin-top: 10px;">Nome da Empresa</label>
-              <div class="col-lg-10" style="margin-top: 13px;">
-                <%= f.text_field :empresa_id, :class => 'form-control',:placeholder => "Digite o nome da empresa", :value => '', :id => 'buscar_empresa'%>
-              </div>
-            </div>
-            <script type="text/javascript">
-                $(document).ready(function() {
-                    var imagem = true;
 
-                    $('#buscar_empresa').tokenInput("<%= autocomplete_empresas_path %>", {
-                        zIndex:1000,
-                        crossDomain: false,
-                        tokenLimit: 1,
-                        theme: "facebook",
-                        minChars: 3,
-                        hintText: "Digite um termo para a pesquisa do destinatário",
-                        noResultsText: "Nenhum resultado",
-                        searchingText: "Pesquisando...",
-                        onAdd: function(item){
-                            $(document.getElementsByName('carregando')).remove();
-                            imagem = true;
-                        },
-                        onDelete: function(item){
-                            imagem = true;
-                        },
-                        resultsFormatter: function(item) {
-                            var nome = item.name;
+            <% if @avaliacao.new_record? %>
 
-                            var imagem = "<img src=" + item.img_src + " onError=\"this.onerror=null;this.src='/assets/user.jpg';\" class=\"img-circle img-token\" style='margin:3px;' width='20px' height='20px'/>"
+                <div class="col-lg-12">
+                  <label class="col-lg-2 control-label">Nome da Empresa</label>
+                  <div class="col-lg-10" sqtyle="margin-top: 13px;">
+                    <%= f.text_field :empresa_id, :class => 'form-control',:placeholder => "Digite o nome da empresa", :value => '', :id => 'buscar_empresa'%>
+                  </div>
+                </div>
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        var imagem = true;
+
+                        $('#buscar_empresa').tokenInput("<%= autocomplete_empresas_path %>", {
+                            zIndex:1000,
+                            crossDomain: false,
+                            tokenLimit: 1,
+                            theme: "facebook",
+                            minChars: 3,
+                            hintText: "Digite um termo para a pesquisa do destinatário",
+                            noResultsText: "Nenhum resultado",
+                            searchingText: "Pesquisando...",
+                            onAdd: function(item){
+                                $(document.getElementsByName('carregando')).remove();
+                                imagem = true;
+                            },
+                            onDelete: function(item){
+                                imagem = true;
+                            },
+                            resultsFormatter: function(item) {
+                                var nome = item.name;
+
+                                var imagem = "<img src=" + item.img_src + " onError=\"this.onerror=null;this.src='/assets/user.jpg';\" class=\"img-circle img-token\" style='margin:3px;' width='20px' height='20px'/>"
 
 
-                            return "<li class=\"token-list\" style='background-color: #FFF;'><div class=\"image pull-left\">" + imagem + "</div><p style='margin-left: 25px;'>" + nome + "</p></li>"
-                        },
-                        noResult: function(item){
-                            $(document.getElementsByName('carregando')).remove();
-                            imagem = true;
-                        }
+                                return "<li class=\"token-list\" style='background-color: #FFF;'><div class=\"image pull-left\">" + imagem + "</div><p style='margin-left: 25px;'>" + nome + "</p></li>"
+                            },
+                            noResult: function(item){
+                                $(document.getElementsByName('carregando')).remove();
+                                imagem = true;
+                            }
+                        });
+
+                        $("#token-input-buscar_empresa").keypress(function (){
+                            if (($("#token-input-buscar_empresa").val().length >=3) && imagem){
+                                $($("#token-input-buscar_empresa").parent().parent()).append('<%= image_tag "loading_blue.gif", :size=>'25x25', :name=>'carregando', :align => 'right'%>');
+                                imagem = false;
+                            }
+                        });
+
+                        $("#token-input-buscar_empresa").keyup(function(e){
+                            var keycode =  e.keyCode ? e.keyCode : e.which;
+                            if((keycode == 8) && ($("#token-input-buscar_empresa").val().length<3)){
+                                $(document.getElementsByName('carregando')).remove();
+                                imagem = true;
+                            }
+                        });
                     });
+                </script>
+                <br> <br>
 
-                    $("#token-input-buscar_empresa").keypress(function (){
-                        if (($("#token-input-buscar_empresa").val().length >=3) && imagem){
-                            $($("#token-input-buscar_empresa").parent().parent()).append('<%= image_tag "loading_blue.gif", :size=>'25x25', :name=>'carregando', :align => 'right'%>');
-                            imagem = false;
-                        }
-                    });
+            <% else %>
+                  <% f.hidden_field :empresa_id, :value => @avaliacao.empresa_id %>
+                  <p style="text-align: center"><label class="control-label" style="font-size: 14pt;">Nome da Empresa: <%= @avaliacao.empresa.nome %></label></p>
+            <% end %>
 
-                    $("#token-input-buscar_empresa").keyup(function(e){
-                        var keycode =  e.keyCode ? e.keyCode : e.which;
-                        if((keycode == 8) && ($("#token-input-buscar_empresa").val().length<3)){
-                            $(document.getElementsByName('carregando')).remove();
-                            imagem = true;
-                        }
-                    });
-                });
-            </script>
 
-            <br> <br>
 
             <div class="col-lg-12">
               <div class="col-lg-6" style="margin-left: -5px;">
@@ -324,7 +333,7 @@
 
 
               <div class="col-xs-12 col-lg-12">
-                <%= f.text_area :atividades, :rows => 10, :style => 'width: 100%; padding: 10px'  %>
+                <%= f.text_area :comentarios_avaliador, :rows => 10, :style => 'width: 100%; padding: 10px'  %>
               </div>
 
             </div>

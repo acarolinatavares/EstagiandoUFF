@@ -15,7 +15,13 @@
                 <p style="text-align: center">Você será redirecionado para página inicial em alguns segundos...
                 <br><span style="font-size: 8.5pt; color: #989595;">Se não quiser esperar, <a href="<%= root_path %>">clique aqui.</a></span></p>
 
-                <% #TODO Adicionar Refresh %>
+                <script type="text/javascript">
+                  $(document).ready(function() {
+                    setTimeout(function () {
+                        window.location.href = "<%= root_path %>"; //will redirect to your blog page (an ex: blog.html)
+                    }, 3000);
+                  })
+                </script>
 
               </div>
             </section>
