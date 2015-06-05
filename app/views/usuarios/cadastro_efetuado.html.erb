@@ -1,8 +1,6 @@
 <% content_for :content do %>
-    <section id="main-content">
-      <section class="wrapper">
 
-        <div class="row" style="position:absolute; top: 50%; margin-top: -100px;">
+        <div class="row" style="position:absolute; top: 50%; margin:-100px 0 0 0;">
           <div class="col-lg-2"></div>
 
           <div class="col-xs-12 col-lg-8">
@@ -15,14 +13,13 @@
                 Essa medida é importante pois o EstagiandoUFF é um sistema fechado para alunos da Universidade Federal Fluminense,
                 portanto precisamos verificar se o seu email <b>@id.uff.br</b> é válido.</p>
                 <p style="text-align: center">Você será redirecionado para página inicial em alguns segundos...
-                <br><span style="font-size: 8.5pt; color: #989595;">Se não quiser esperar, <a href="<%= root_path %>">clique aqui.</a></p>
+                <br><span style="font-size: 8.5pt; color: #989595;">Se não quiser esperar, <a href="<%= root_path %>">clique aqui.</a></span></p>
 
                 <% #TODO Adicionar Refresh %>
 
               </div>
-            </section></div>
-
-      </section>
-    </section>
+            </section>
+          </div>
+        </div>
 
 <% end %>

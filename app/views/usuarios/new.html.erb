@@ -1,5 +1,13 @@
-<h1>New usuario</h1>
+<% content_for :content do %>
 
-<%= render 'form' %>
+    <h1><i class="fa fa-user"></i> Novo Usuário</h1>
 
-<%= link_to 'Back', usuarios_path %>
+    <ol class="breadcrumb" style="margin-top: 30px;">
+      <li><i class="fa fa-home"></i><a href="<%= root_path %>">Início</a></li>
+      <li><i class="fa fa-user"></i><a href="<%= usuarios_path %>">Usuários</a></li>
+      <li><i class="fa fa-plus"></i>Novo Usuário</li>
+    </ol>
+
+    <%= render 'form' %>
+
+<% end %>

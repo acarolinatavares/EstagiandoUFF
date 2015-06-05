@@ -1,41 +1,54 @@
-<%= form_for(@usuario) do |f| %>
-  <% if @usuario.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@usuario.errors.count, "error") %> prohibited this usuario from being saved:</h2>
+<%= form_for(@usuario, :html => {:class => "form-horizontal"})  do |f| %>
+    <% if @usuario.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@usuario.errors.count, "error") %> prohibited this usuario from being saved:</h2>
 
-      <ul>
-      <% @usuario.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @usuario.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-xs-12 col-lg-2"></div>
+      <div class="col-xs-12 col-lg-8">
+        <section class="panel">
+          <div class="panel-body">
+
+            <div class="form-group">
+              <label for="cadastroNome" class="col-lg-2 control-label">Nome</label>
+              <div class="col-lg-10">
+                <%= f.text_field :nome, :class => 'form-control', :placeholder => 'Nome' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cadastroEmail" class="col-lg-2 control-label">Email</label>
+              <div class="col-lg-10">
+
+                <div class="input-group">
+                  <%= f.text_field :email, :class => 'form-control', :placeholder => 'Email' %>
+                  <span class="input-group-addon" id="basic-addon2">@id.uff.br</span>
+                </div>
+
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cadastroSenha" class="col-lg-2 control-label">Senha</label>
+              <div class="col-lg-10">
+                <%= f.password_field :senha, :class => 'form-control', :placeholder => 'Senha' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <div style="text-align: center">
+                <%= f.submit "Cadastrar", :class => 'btn btn-success'%>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :id %><br />
-    <%= f.number_field :id %>
-  </div>
-  <div class="field">
-    <%= f.label :nome %><br />
-    <%= f.text_field :nome %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :senha %><br />
-    <%= f.text_field :senha %>
-  </div>
-  <div class="field">
-    <%= f.label :administrador %><br />
-    <%= f.number_field :administrador %>
-  </div>
-  <div class="field">
-    <%= f.label :verificado %><br />
-    <%= f.number_field :verificado %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

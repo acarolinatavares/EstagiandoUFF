@@ -1,6 +1,11 @@
-<h1>Editing usuario</h1>
+<% content_for :content do %>
 
-<%= render 'form' %>
+    <ol class="breadcrumb">
+      <li><i class="fa fa-home"></i><a href="<%= root_path %>">Início</a></li>
+      <li><i class="fa fa-user"></i><a href="<%= usuarios_path %>">Usuários</a></li>
+      <li><i class="fa fa-pencil-square-o"></i><a href="<%= usuario_path %>"><%= @usuario.nome %></a></li>
+    </ol>
 
-<%= link_to 'Show', @usuario %> |
-<%= link_to 'Back', usuarios_path %>
+    <%= render 'form' %>
+
+<% end %>
