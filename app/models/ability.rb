@@ -3,29 +3,23 @@ class Ability
 
   def initialize(usuario)
 
-    usuario ||= Usuario.new
-    if usuario.administrador?
+    can :create, Usuario
+
+    if !usuario.nil? && usuario.administrador?
       can :manage, :all
     else
       can :read, :all
 
       can :autocomplete_empresas, Avaliacao
 
-      can :create, Empresa
-
-      can :create, Usuario
 
       can :modify, Usuario do |user|
         user == usuario
       end
 
-      can :create, Avaliacao
-
       can [:modify,:destroy], Avaliacao do |avaliacao|
         avaliacao.usuario == usuario
       end
-
-      can :create, Comentario
 
       can [:modify,:destroy], Comentario do |comentario|
         comentario.usuario == usuario

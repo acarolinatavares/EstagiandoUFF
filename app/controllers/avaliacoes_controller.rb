@@ -1,5 +1,6 @@
 # encoding : utf-8
 class AvaliacoesController < ApplicationController
+  load_and_authorize_resource :except => [:index, :show]
 
   def index
     @avaliacoes = Avaliacao.all
