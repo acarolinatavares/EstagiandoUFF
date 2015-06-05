@@ -15,6 +15,7 @@ class UsuariosController < ApplicationController
 
   def show
     @usuario = Usuario.find(params[:id])
+    @avaliacoes = Avaliacao.where(:usuario_id => @usuario.id)
 
     respond_to do |format|
       format.html # show.html.erb
