@@ -31,6 +31,7 @@ class AvaliacoesController < ApplicationController
 
   def update
     @avaliacao = Avaliacao.find(params[:id])
+    @avaliacao.usuario_id = current_user.id
 
       if @avaliacao.update_attributes(params[:avaliacao])
         redirect_to @avaliacao, :notice => 'Avaliação atualizada com sucesso!.'
@@ -53,7 +54,7 @@ class AvaliacoesController < ApplicationController
       empresas.each do |empresa|
         nome = empresa.nome
         lista.push :id => empresa.id,
-                   :name => nome.truncate(30),
+                   :name => nome,
                    :img_src => nil
       end
     end
