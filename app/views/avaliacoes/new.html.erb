@@ -1,10 +1,16 @@
 <% content_for :content do %>
-    <section id="main-content">
-      <section class="wrapper">
+
+    <h1><i class="fa fa-star-o fa-lg"></i> Nova Avaliação</h1>
+
+        <ol class="breadcrumb" style="margin-top: 30px; margin-bottom: 0px !important;">
+          <li><i class="fa fa-home"></i><a href="<%= root_path %>">Início</a></li>
+          <li><i class="fa fa-building"></i><a href="<%= avaliacoes_path %>">Avaliações</a></li>
+          <li><i class="fa fa-plus"></i>Nova Avaliação</li>
+        </ol>
+
+    <br>
 
       <%= render 'form' %>
 
-      </section>
-    </section>
 <% end %>
 
