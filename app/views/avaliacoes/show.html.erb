@@ -68,7 +68,6 @@
 
               <div class="col-xs-12 col-lg-6">
 
-
                 <p style="font-size: 12pt;">
                   <b>Início do Contrato:</b>
                   <% if !@avaliacao.inicio_contrato.nil? %>
@@ -259,7 +258,7 @@
               <h3>Deseja fazer mais comentários sobre a sua experiência de estágio?</h3>
 
               <p style="margin: 10px;">
-                <% if !@avaliacao.comentarios_avaliador.nil? %>
+                <% if @avaliacao.comentarios_avaliador.nil? %>
                     <%= @avaliacao.comentarios_avaliador %>
                 <% else %>
                     <i>O usuário não fez comentários.</i>

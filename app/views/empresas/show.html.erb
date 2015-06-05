@@ -1,61 +1,141 @@
 <% content_for :content do %>
 
-        <h1><i class="fa fa-building-o fa-lg"></i> <%= @empresa.nome %></h1>
+    <h1><i class="fa fa-building-o fa-lg"></i> <%= @empresa.nome %></h1>
 
-        <ol class="breadcrumb" style="margin-top: 30px;">
-          <li><i class="fa fa-home"></i><a href="<%= root_path %>">Início</a></li>
-          <li><i class="fa fa-building"></i><a href="<%= empresas_path %>">Empresas</a></li>
-          <li><i class="fa fa-arrow-right"></i><%= @empresa.nome %></li>
-        </ol>
+    <ol class="breadcrumb" style="margin-top: 30px;">
+      <li><i class="fa fa-home"></i><a href="<%= root_path %>">Início</a></li>
+      <li><i class="fa fa-building"></i><a href="<%= empresas_path %>">Empresas</a></li>
+      <li><i class="fa fa-arrow-right"></i><%= @empresa.nome %></li>
+    </ol>
 
-        <p id="notice"><%= notice %></p>
+    <p id="notice"><%= notice %></p>
 
-        <div class="row">
-          <div class="col-lg-12">
-            <section class="panel">
-              <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-4">
+        <section class="panel">
+          <div class="panel-body">
 
-                <h2 style="margin-top: 0px;">Dados da Empresa</h2>
+            <h2 style="margin-top: 0px;">Dados da Empresa</h2>
 
-                <p style="font-size: 12pt;">
-                  <b>Nome:</b>
+
+            <p style="font-size: 12pt;">
+              <b>Nome:</b>
+              <% if !@empresa.nome.nil? %>
                   <%= @empresa.nome %>
-                </p>
+              <% else %>
+                  <i>não informado</i>
+              <% end %>
+            </p>
 
-                <p style="font-size: 12pt;">
-                  <b>Email:</b>
+            <p style="font-size: 12pt;">
+              <b>Email:</b>
+              <% if !@empresa.email.nil? %>
                   <%= @empresa.email %>
-                </p>
+              <% else %>
+                  <i>não informado</i>
+              <% end %>
+            </p>
 
-                <p style="font-size: 12pt;">
-                  <b>Site:</b>
-                  <a href="<%= @empresa.site %>" target="_blank"><%= @empresa.site %></a>
-                </p>
+            <p style="font-size: 12pt;">
+              <b>Site:</b>
+              <% if !@empresa.site.nil? %>
+                  <%= @empresa.site %>
+              <% else %>
+                  <i>não informado</i>
+              <% end %>
+            </p>
 
-              </div>
-            </section>
           </div>
-        </div>
+        </section>
+      </div>
 
-        <% #TODO if empresa has avaliacoes %>
+      <div class="col-lg-8">
+        <section class="panel">
+          <div class="panel-body">
 
-        <div class="row" style="margin-top: -10px;">
-          <div class="col-lg-12">
-            <section class="panel">
-              <div class="panel-body">
+            <h2 style="margin-top: 0px;">Estatísticas</h2>
 
-                <h2 style="margin-top: 0px;">Avaliações desta Empresa</h2>
-
-
-              </div>
-            </section>
           </div>
-        </div>
+        </section>
+      </div>
+    </div>
+
+    <% #TODO if empresa has avaliacoes %>
+
+    <div class="row" style="margin-top: -10px;">
+      <div class="col-lg-12">
+        <section class="panel">
+          <div class="panel-body">
+
+            <h2 style="margin-top: 0px;">Avaliações desta Empresa</h2>
+
+            <% if @empresa.avaliacoes.any? %>
+                <% @empresa.avaliacoes.each do |avaliacao| %>
+
+                    <hr>
+
+                    <div class="col-xs-12 col-lg-3">
+                      <p style="font-size: 12pt;">
+                        <b>Avaliador:</b>
+                        <a href="<%= usuario_path(avaliacao.usuario.id) %>" target="_blank"><%= avaliacao.usuario.nome %></a>
+                      </p>
+
+                    </div>
+                    <div class="col-xs-12 col-lg-4">
+                      <p style="font-size: 12pt;">
+                        <b>Período na empresa:</b>
+                        <% if !avaliacao.inicio_contrato.nil? %>
+
+                            <% if !avaliacao.final_contrato.nil? %>
+                                <%= avaliacao.inicio_contrato %> a <%= avaliacao.final_contrato %>
+                            <% else %>
+                                <%= avaliacao.inicio_contrato %> até agora
+
+                            <% end %>
+                        <% else %>
+                            <i>não informado</i>
+                        <% end %>
+                      </p>
+                    </div>
+
+                    <div class="col-xs-12 col-lg-4">
+                      <p style="font-size: 12pt;">
+                        <b>Cargo:</b>
+                        <% if !avaliacao.titulo_cargo.nil? %>
+                            <%= avaliacao.titulo_cargo %>
+                        <% else %>
+                            <i>não informado</i>
+                        <% end %>
+                      </p>
+                    </div>
+
+                    <div class="col-xs-12 col-lg-1">
+                      <a class="btn btn-primary" style="float: right" href="<%= avaliacao_path(avaliacao.id) %>"><i class="fa fa-plus-square-o"></i></a>
+                    </div>
+
+                <% end %>
+            <% else %>
+                <div class="alert alert-warning fade in" style="margin-bottom: 0px !important;">
+
+                  Essa empresa ainda não possui nenhuma avaliação.
+
+                </div>
+            <% end %>
+
+          </div>
+        </section>
+      </div>
+    </div>
 
 
-        <div class="btn-group">
-            <a class="btn btn-primary" href="<%= edit_empresa_path(@empresa) %>"><i class="fa fa-pencil-square-o"></i> Editar Empresa</a>
-            <a class="btn btn-success" href="<%= empresas_path %>"><i class="fa fa-reply"></i> Voltar</a>
+    <% if can? :manage, Empresa %>
+        <div class="btn-group" role="group" style="left: 50%; margin: 20px 0 20px -140px;">
+          <a class="btn btn-primary" href="<%= edit_empresa_path(@empresa) %>"><i class="fa fa-pencil-square-o"></i> Editar Empresa</a>
+          <a class="btn btn-danger" href="#"><i class="fa fa-pencil-square-o"></i> Excluir Empresa</a>
         </div>
+    <% end %>
+
+    <% #TODO usuário não pode adicionar mais de uma avaliação por empresa %>
+    <% #TODO excluir empresa no show %>
 
 <% end %>

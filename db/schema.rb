@@ -11,14 +11,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150523214713) do
+ActiveRecord::Schema.define(:version => 20150605220154) do
 
   create_table "avaliacoes", :force => true do |t|
     t.integer  "usuario_id"
     t.integer  "empresa_id"
     t.integer  "situacao_avaliacao_id"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.string   "inicio_contrato"
+    t.string   "final_contrato"
+    t.boolean  "vale_transporte",       :default => false
+    t.boolean  "ticket_refeicao",       :default => false
+    t.boolean  "ticket_alimentacao",    :default => false
+    t.boolean  "plano_saude",           :default => false
+    t.boolean  "plano_dentario",        :default => false
+    t.boolean  "descontos",             :default => false
+    t.string   "titulo_cargo"
+    t.string   "area_atuacao"
+    t.integer  "carga_horaria"
+    t.float    "salario"
+    t.text     "atividades"
+    t.integer  "orientador"
+    t.integer  "efetivacao"
+    t.integer  "aprendizado"
+    t.boolean  "indicaria"
+    t.text     "comentarios_avaliador"
   end
 
   add_index "avaliacoes", ["empresa_id"], :name => "index_empresa_id_avaliacao", :unique => true
@@ -60,9 +78,10 @@ ActiveRecord::Schema.define(:version => 20150523214713) do
     t.string   "email"
     t.string   "senha"
     t.integer  "administrador"
-    t.integer  "verificado"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.boolean  "email_confirmed", :default => false
+    t.string   "confirm_token"
   end
 
 end
