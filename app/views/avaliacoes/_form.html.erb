@@ -21,8 +21,16 @@
 
             <label class="col-lg-2 control-label">Nome da Empresa</label>
             <div class="col-lg-10">
-              <%= f.text_field :empresa_id, :class => 'form-control',:placeholder => "Digite o nome da empresa", :value => ''%>
+              <%= f.text_field :empresa_id, :class => 'form-control',:placeholder => "Digite o nome da empresa", :value => '', :id => 'buscar_empresa'%>
             </div>
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("#buscar_empresa").tokenInput("<%= autocomplete_empresas_path %>", {
+                        theme: "facebook"
+                    });
+                });
+            </script>
 
           </div>
         </section>
