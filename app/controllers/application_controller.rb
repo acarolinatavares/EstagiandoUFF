@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_path,  :flash => {:error => exception.message}
+  end
+
   def authorize
     if logged_in?
       redirect_to root_path

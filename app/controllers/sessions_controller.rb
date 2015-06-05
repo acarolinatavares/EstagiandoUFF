@@ -1,3 +1,4 @@
+# encoding : utf-8
 class SessionsController < ApplicationController
   before_filter :block_access, except: [:destroy]
 
@@ -10,15 +11,12 @@ class SessionsController < ApplicationController
     if @usuario && @usuario.senha == params[:session][:senha]
       if @usuario.email_confirmed
         sign_in(@usuario)
-        redirect_to current_user
+        redirect_to root_path, :notice => "Bem vindo!"
       else
-        flash.now[:error] = 'Please activate your account by following the
-        instructions in the account confirmation email you received to proceed'
-        redirect_to root_path
+        redirect_to root_path,  :flash => {:error => "Por favor, ative sua conta seguindo as instruções no e-mail de confirmação de conta que você recebeu para continuar."}
       end
     else
-      flash.now[:error] = 'Email e/ou senha incorretos.'
-      redirect_to root_path
+      redirect_to root_path, :flash => { :error => "Email e/ou senha incorretos" }
     end
   end
 
