@@ -1,33 +1,301 @@
-<%= form_for(@avaliacao) do |f| %>
-  <% if @avaliacao.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@avaliacao.errors.count, "error") %> prohibited this avaliacao from being saved:</h2>
+<%= form_for(@avaliacao, :html => {:class => 'form-horizontal'}) do |f| %>
+    <% if @avaliacao.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@avaliacao.errors.count, "error") %> prohibited this avaliacao from being saved:</h2>
 
-      <ul>
-      <% @avaliacao.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @avaliacao.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-lg-1"></div>
+
+      <div class="col-xs-12 col-lg-10">
+        <section class="panel">
+          <div class="panel-body" style="padding-bottom: 30px;">
+            <h2>Empresa</h2>
+
+            <label class="col-lg-2 control-label">Nome da Empresa</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" placeholder="Nome da Empresa">
+            </div>
+
+          </div>
+        </section>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :id %><br />
-    <%= f.number_field :id %>
-  </div>
-  <div class="field">
-    <%= f.label :usuario_id %><br />
-    <%= f.number_field :usuario_id %>
-  </div>
-  <div class="field">
-    <%= f.label :empresa_id %><br />
-    <%= f.number_field :empresa_id %>
-  </div>
-  <div class="field">
-    <%= f.label :situacao_avaliacao_id %><br />
-    <%= f.number_field :situacao_avaliacao_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="row">
+      <div class="col-lg-1"></div>
+
+      <div class="col-xs-12 col-lg-10">
+        <section class="panel">
+          <div class="panel-body" style="padding-bottom: 30px;">
+            <h2>Contratação</h2>
+
+            <label class="col-lg-2 control-label" style="text-align: center;">Data (mês/ano)</label>
+            <div class="col-lg-4">
+              <%= f.text_field :inicio_contrato, :class => 'form-control', :placeholder => 'ex: maio/2015' %>
+            </div>
+
+            <label class="col-lg-2 control-label" style="text-align: center; margin-top: -12px;">Final do Estágio<br>(opcional)</label>
+            <div class="col-lg-4">
+              <%= f.text_field :final_contrato, :class => 'form-control', :placeholder => 'ex: outubro/2015' %>
+            </div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-1"></div>
+
+      <div class="col-xs-12 col-lg-10">
+        <section class="panel">
+          <div class="panel-body" style="padding-bottom: 30px;">
+            <h2>Benefícios</h2>
+
+            <div class="col-xs-12 col-lg-4">
+              <label class="checkbox-inline">
+                <%= f.check_box :vale_transporte %>  Vale Transporte
+              </label>
+            </div>
+
+            <div class="col-xs-12 col-lg-4">
+              <label class="checkbox-inline">
+                <%= f.check_box :ticket_refeicao %> Ticket Refeição
+              </label>
+            </div>
+
+            <div class="col-xs-12 col-lg-4">
+              <label class="checkbox-inline">
+                <%= f.check_box :ticket_alimentacao %> Ticket Alimentação
+              </label>
+            </div>
+
+            <div class="col-xs-12 col-lg-4">
+              <label class="checkbox-inline">
+                <%= f.check_box :plano_saude %> Plano de Saúde
+              </label>
+            </div>
+
+            <div class="col-xs-12 col-lg-4">
+              <label class="checkbox-inline">
+                <%= f.check_box :plano_dentario %> Plano Dentário
+              </label>
+            </div>
+
+            <div class="col-xs-12 col-lg-4">
+              <label class="checkbox-inline">
+                <%= f.check_box :descontos %> Descontos em Serviços da Empresa
+              </label>
+            </div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-1"></div>
+
+      <div class="col-xs-12 col-lg-10">
+        <section class="panel">
+          <div class="panel-body" style="padding-bottom: 30px;">
+            <h2>Cargo</h2>
+
+            <div class="col-xs-6 col-lg-6">
+              <div class="form-group">
+                <label class="col-lg-4 control-label" style="text-align: center;">Título do Cargo</label>
+                <div class="col-lg-8">
+                  <%= f.text_field :titulo_cargo, :class => 'form-control', :placeholder => 'ex: estagiário em desenvolvimento' %>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-4 control-label" style="text-align: center;">Área de Atuação</label>
+                <div class="col-lg-8">
+                  <%= f.text_field :area_atuacao, :class => 'form-control', :placeholder => 'ex: manutenção do sistema' %>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="form-group col-xs-12 col-lg-6">
+              <div class="form-group">
+                <label class="col-lg-4 control-label" style="text-align: center; margin-top: -13px;">Carga Horária<br>(semanal)</label>
+                <div class="col-lg-8">
+                  <div class="input-group">
+                    <%= f.text_field :carga_horaria, :class => 'form-control', :placeholder => 'ex: 30', :onkeypress => 'return event.charCode >= 48 && event.charCode <= 57' %>
+                    <span class="input-group-addon" id="basic-addon2">horas/semana</span>
+                  </div>
+                </div>
+              </div>
+
+              <% #TODO preparar máscara do salário %>
+
+              <div class="form-group">
+                <label class="col-lg-4 control-label" style="text-align: center;">Salário (bolsa)</label>
+                <div class="col-lg-8">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon2">R$</span>
+                    <%= f.text_field :salario, :class => 'form-control', :placeholder => 'ex: 800', :onkeypress => 'return event.charCode >= 48 && event.charCode <= 57'  %>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-1"></div>
+
+      <div class="col-xs-12 col-lg-10">
+        <section class="panel">
+          <div class="panel-body" style="padding-bottom: 30px;">
+            <h2>Atividades</h2>
+
+            <div class="col-xs-12 col-lg-12">
+              <h3>Quais foram as suas principais atividades no estágio?</h3>
+
+
+              <div class="col-xs-12 col-lg-12">
+                <%= f.text_area :atividades, :rows => 8, :style => 'width: 100%; padding: 10px'  %>
+              </div>
+
+            </div>
+
+            <hr>
+
+            <div class="col-xs-12 col-lg-12">
+              <h3>Você possuia algum orientador na empresa, que ajudava com suas dúvidas e dificuldades?</h3>
+
+              <div class="col-xs-12 col-lg-6">
+                <div class="col-xs-12 col-lg-12">
+                  <%= f.radio_button :orientador, 0 %> Meu orientador <b>ajudava frequentemente</b>.
+                </div>
+
+                <div class="col-xs-12 col-lg-12">
+                  <%= f.radio_button :orientador, 1 %> Meu orientador <b> auxiliava ocasionalmente</b>.
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-lg-6">
+
+                <div class="col-xs-12 col-lg-12">
+                  <%= f.radio_button :orientador, 2 %> Eu <b>não possuia</b> um orientador.
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-1"></div>
+
+      <div class="col-xs-12 col-lg-10">
+        <section class="panel">
+          <div class="panel-body" style="padding-bottom: 30px;">
+            <h2>Avaliação</h2>
+
+            <br>
+
+
+            <div class="col-xs-12 col-lg-12">
+              <h3>Como você define as suas possibilidades de efetivação?</h3>
+
+              <div class="col-xs-4 col-lg-4">
+                <%= f.radio_button :efetivacao, 0 %> Provavelmente <b>serei</b> efetivado.
+              </div>
+
+              <div class="col-xs-4 col-lg-4">
+                <%= f.radio_button :efetivacao, 1 %> Provavelmente <b>não serei</b> efetivado.
+              </div>
+
+              <div class="col-xs-2 col-lg-2">
+                <%= f.radio_button :efetivacao, 2 %> Fui <b>efetivado</b>.
+              </div>
+
+              <div class="col-xs-2 col-lg-2">
+                <%= f.radio_button :efetivacao, 3 %> Fui <b>dispensado</b>.
+              </div>
+
+            </div>
+
+            <br><hr>
+
+            <div class="col-xs-12 col-lg-12">
+              <h3>Quão válido foi o aprendizado durante o seu tempo de estágio?</h3>
+
+              <div class="col-xs-4 col-lg-4">
+                <%= f.radio_button :aprendizado, 0 %> Aprendi <b>muito</b> no estágio.
+              </div>
+
+              <div class="col-xs-4 col-lg-4">
+                <%= f.radio_button :aprendizado, 1 %> Aprendi <b>algumas coisas</b> no estágio.
+              </div>
+
+              <div class="col-xs-2 col-lg-4">
+                <%= f.radio_button :aprendizado, 2 %> <b>Não aprendi muito</b> no estágio.
+              </div>
+
+            </div>
+
+            <br><hr>
+
+            <div class="col-xs-12 col-lg-12">
+              <h3>Você indicaria a mesma oportunidade de estágio para algum amigo seu?</h3>
+
+
+              <div class="col-xs-4 col-lg-4">
+                <%= f.radio_button :indicaria, true %> <b>Indicaria</b>.
+              </div>
+
+              <div class="col-xs-4 col-lg-4" >
+                <%= f.radio_button :indicaria, false %> <b>Não indicaria</b>.
+              </div>
+
+            </div>
+
+            <br><hr>
+
+            <div class="col-xs-12 col-lg-12">
+              <h3>Deseja fazer mais comentários sobre a sua experiência de estágio?</h3>
+
+
+              <div class="col-xs-12 col-lg-12">
+                <%= f.text_area :atividades, :rows => 10, :style => 'width: 100%; padding: 10px'  %>
+              </div>
+
+            </div>
+
+
+
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <% #TODO centralizar botões %>
+
+    <div class="actions">
+      <div class="btn-group" style="left:50%;margin-left: -129px;">
+        <%= f.submit "Salvar Avaliação", :class => 'btn btn-success'%>
+        <input class="btn btn-warning" type="reset" value="Limpar Formulário"></button>
+      </div>
+    </div>
+
 <% end %>

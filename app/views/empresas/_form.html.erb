@@ -7,12 +7,12 @@
 
         <% if @empresa.new_record? %>
 
-        <p>O primeiro passo ao cadastrar uma empresa é se certificar que a mesma não está em nosso banco de dados.
-          Faça uma busca em nossa <a href="<%= empresas_path %>">lista de empresas</a>.
-          Caso você não encontre a empresa, é hora de ir para o próximo passo.</p>
-        <p>Para adicionar uma empresa ao <b>EstagiandoUFF</b> os únicos dados exigidos são o nome da empresa e a cidade onde ela está
-         localizada, mas você também pode adicionar dados de contato, como email e telefone. Além disso,
-          você pode fazer o upload da logomarca da empresa.</p>
+            <p>O primeiro passo ao cadastrar uma empresa é se certificar que a mesma não está em nosso banco de dados.
+              Faça uma busca em nossa <a href="<%= empresas_path %>">lista de empresas</a>.
+              Caso você não encontre a empresa, é hora de ir para o próximo passo.</p>
+            <p>Para adicionar uma empresa ao <b>EstagiandoUFF</b> os únicos dados exigidos são o nome da empresa e a cidade onde ela está
+              localizada, mas você também pode adicionar dados de contato, como email e telefone. Além disso,
+              você pode fazer o upload da logomarca da empresa.</p>
 
         <% end %>
 
@@ -45,7 +45,7 @@
 
         <h2 style="margin-top: 0; margin-bottom: 20px">Dados da Empresa</h2>
 
-        <%= form_for(@empresa) do |f| %>
+        <%= form_for(@empresa, :html => {:class => 'form-horizontal'}) do |f| %>
             <% if @empresa.errors.any? %>
                 <div id="error_explanation">
                   <h2><%= pluralize(@empresa.errors.count, "error") %> prohibited this empresa from being saved:</h2>
@@ -57,28 +57,36 @@
                   </ul>
                 </div>
             <% end %>
+            <div class="col-lg-12">
 
-            <div class="form-group">
-              <%= f.label :nome %>
-              <%= f.text_field :nome, :class => 'form-control', :placeholder => 'Nome' %>
-            </div>
+              <div class="form-group">
+                <%= f.label :nome , :class => 'col-lg-2 control-labell', :style => 'margin-top: 6px;' %>
+                <div class="col-lg-10">
+                  <%= f.text_field :nome, :class => 'form-control', :placeholder => 'Nome' %>
+                </div>
+              </div>
 
-            <div class="form-group">
-              <%= f.label :email %>
-              <%= f.text_field :email, :class => 'form-control', :placeholder => 'Email' %>
-            </div>
+              <div class="form-group">
+                <%= f.label :email , :class => 'col-lg-2 control-labell', :style => 'margin-top: 6px;' %>
+                <div class="col-lg-10">
+                  <%= f.text_field :email, :class => 'form-control', :placeholder => 'Email' %>
+                </div>
+              </div>
 
-            <div class="form-group">
-              <%= f.label :site %>
-              <%= f.text_field :site, :class => 'form-control', :placeholder => 'http://' %>
-            </div>
+              <div class="form-group">
+                <%= f.label :site , :class => 'col-lg-2 control-labell', :style => 'margin-top: 6px;' %>
+                <div class="col-lg-10">
+                  <%= f.text_field :site, :class => 'form-control', :placeholder => 'http://' %>
+                </div>
+              </div>
 
-            <!--<div class="form-group">-->
-            <%#= f.file_field :avatar %>
-            <!--</div>-->
+              <!--<div class="form-group">-->
+              <%#= f.file_field :avatar %>
+              <!--</div>-->
 
-            <div class="actions">
-              <%= f.submit "Salvar", :class => 'btn btn-success'%>
+              <div class="actions">
+                <%= f.submit "Salvar", :class => 'btn btn-success'%>
+              </div>
             </div>
         <% end %>
 
