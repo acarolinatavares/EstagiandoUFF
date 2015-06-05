@@ -17,4 +17,4 @@ end
 
 gem 'jquery-rails'
 gem 'therubyracer', :platform => :ruby
-gem 'rails_tokeninput', '~> 1.7.0'
+#gem 'rails_tokeninput', '~> 1.7.0'
