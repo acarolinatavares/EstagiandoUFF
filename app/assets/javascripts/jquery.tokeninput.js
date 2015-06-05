@@ -306,6 +306,8 @@ $.TokenList = function (input, url_or_data, settings) {
     // The list to store the token items in
     var token_list = $("<ul />")
         .addClass(settings.classes.tokenList)
+        .addClass('form-control')
+        .width('97.2%')
         .click(function (event) {
             var li = $(event.target).closest("li");
             if(li && li.get(0) && $.data(li.get(0), "tokeninput")) {
