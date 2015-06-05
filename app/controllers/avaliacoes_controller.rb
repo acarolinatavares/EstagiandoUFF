@@ -53,7 +53,7 @@ class AvaliacoesController < ApplicationController
       empresas.each do |empresa|
         nome = empresa.nome
         lista.push :id => empresa.id,
-                   :name => nome,
+                   :name => nome.truncate(30),
                    :img_src => nil
       end
     end

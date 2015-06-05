@@ -1,31 +1,17 @@
+# encoding : utf-8
 class EmpresasController < ApplicationController
   load_and_authorize_resource :except => [:index, :show]
 
   def index
     @empresas = Empresa.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @empresas }
-    end
   end
 
   def show
     @empresa = Empresa.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @empresa }
-    end
   end
 
   def new
     @empresa = Empresa.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @empresa }
-    end
   end
 
   def edit
@@ -35,28 +21,20 @@ class EmpresasController < ApplicationController
   def create
     @empresa = Empresa.new(params[:empresa])
 
-    respond_to do |format|
-      if @empresa.save
-        format.html { redirect_to @empresa, notice: 'Empresa cadastrada com sucesso.' }
-        format.json { render json: @empresa, status: :created, location: @empresa }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @empresa.errors, status: :unprocessable_entity }
-      end
+    if @empresa.save
+      redirect_to @empresa, :flash => {:notice => 'Empresa cadastrada com sucesso.'}
+    else
+      render new_empresa_path, :flash => {:error => "A empresa não pode ser cadastrada. Erro(s): #{@empresa.errors}"}
     end
   end
 
   def update
     @empresa = Empresa.find(params[:id])
 
-    respond_to do |format|
-      if @empresa.update_attributes(params[:empresa])
-        format.html { redirect_to @empresa, notice: 'Empresa atualizada com sucesso' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @empresa.errors, status: :unprocessable_entity }
-      end
+    if @empresa.update_attributes(params[:empresa])
+      redirect_to @empresa, :flash => {:notice => 'Empresa atualizada com sucesso.'}
+    else
+      render edit_empresa_path, :flash => {:error => "A empresa não pode ser alterada. Erro(s): #{@empresa.errors}"}
     end
   end
 
@@ -64,9 +42,6 @@ class EmpresasController < ApplicationController
     @empresa = Empresa.find(params[:id])
     @empresa.destroy
 
-    respond_to do |format|
-      format.html { redirect_to empresas_url }
-      format.json { head :no_content }
-    end
+    redirect_to empresas_path, :flash => {:notice => "Empresa excluída."}
   end
 end

@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     if @usuario && @usuario.senha == params[:session][:senha]
       if @usuario.email_confirmed
         sign_in(@usuario)
-        redirect_to current_user
+        redirect_to root_path, :notice => "Bem vindo!"
       else
         redirect_to root_path,  :flash => {:error => "Por favor, ative sua conta seguindo as instruções no e-mail de confirmação de conta que você recebeu para continuar."}
       end

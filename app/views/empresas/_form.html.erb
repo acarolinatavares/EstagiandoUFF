@@ -62,21 +62,21 @@
               <div class="form-group">
                 <%= f.label :nome , :class => 'col-lg-2 control-labell', :style => 'margin-top: 6px;' %>
                 <div class="col-lg-10">
-                  <%= f.text_field :nome, :class => 'form-control', :placeholder => 'Nome' %>
+                  <%= f.text_field :nome, :class => 'form-control required', :placeholder => 'Nome' %>
                 </div>
               </div>
 
               <div class="form-group">
                 <%= f.label :email , :class => 'col-lg-2 control-labell', :style => 'margin-top: 6px;' %>
                 <div class="col-lg-10">
-                  <%= f.text_field :email, :class => 'form-control', :placeholder => 'Email' %>
+                  <%= f.text_field :email, :class => 'form-control email', :placeholder => 'Email' %>
                 </div>
               </div>
 
               <div class="form-group">
                 <%= f.label :site , :class => 'col-lg-2 control-labell', :style => 'margin-top: 6px;' %>
                 <div class="col-lg-10">
-                  <%= f.text_field :site, :class => 'form-control', :placeholder => 'http://' %>
+                  <%= f.text_field :site, :class => 'form-control url', :placeholder => 'http://' %>
                 </div>
               </div>
 
@@ -97,9 +97,15 @@
                         if ($(this).val().substr(0,7) != "http://") {
                             $(this).val( "http://" + $(this).val().substr(7));
                         }
-                    }
+            });
 
-            )
+            $(document).ready(function() {
+                $('#new_empresa').ketchup({},{
+                    '.required'    : 'required',
+                    '.email'       : 'email',
+                    '.url'         : 'url'
+                });
+            });
 
         </script>
 

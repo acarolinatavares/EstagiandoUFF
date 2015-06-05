@@ -1,6 +1,6 @@
 class ComentariosController < ApplicationController
-  # GET /comentarios
-  # GET /comentarios.json
+  load_and_authorize_resource :except => [:index, :show]
+
   def index
     @comentarios = Comentario.all
 
