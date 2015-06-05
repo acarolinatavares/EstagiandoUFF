@@ -1,33 +1,11 @@
-<h1>Listing usuarios</h1>
+<% content_for :content do %>
 
-<table>
-  <tr>
-    <th>Id</th>
-    <th>Nome</th>
-    <th>Email</th>
-    <th>Senha</th>
-    <th>Administrador</th>
-    <th>Verificado</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+    <h1><i class="fa fa-user"></i> Lista de Usuários</li></h1>
 
-<% @usuarios.each do |usuario| %>
-  <tr>
-    <td><%= usuario.id %></td>
-    <td><%= usuario.nome %></td>
-    <td><%= usuario.email %></td>
-    <td><%= usuario.senha %></td>
-    <td><%= usuario.administrador %></td>
-    <td><%= usuario.verificado %></td>
-    <td><%= link_to 'Show', usuario %></td>
-    <td><%= link_to 'Edit', edit_usuario_path(usuario) %></td>
-    <td><%= link_to 'Destroy', usuario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+    <ol class="breadcrumb" style="margin-top: 30px;">
+      <li><i class="fa fa-home"></i><a href="<%= root_path %>">Início</a></li>
+      <li><i class="fa fa-user"></i><a href="<%= usuarios_path %>">Usuários</a></li>
+      <li><i class="fa fa-plus"></i>Lista de Usuários</li>
+    </ol>
+
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Usuario', new_usuario_path %>

@@ -1,34 +1,64 @@
 <% content_for :content do %>
 
-    <p id="notice"><%= notice %></p>
+    <ol class="breadcrumb">
+      <li><i class="fa fa-home"></i><a href="<%= root_path %>">Início</a></li>
+      <li><i class="fa fa-user"></i><a href="<%= usuarios_path %>">Usuários</a></li>
+      <li><%= @usuario.nome %></li>
+    </ol>
 
-<p>
-  <b>Id:</b>
-  <%= @usuario.id %>
-</p>
+    <div class="row">
 
-<p>
-  <b>Nome:</b>
-  <%= @usuario.nome %>
-</p>
+      <div class="col-xs-12 col-lg-1"></div>
 
-<p>
-  <b>Email:</b>
-  <%= @usuario.email %>
-</p>
+      <div class="col-xs-12 col-lg-2">
+        <section style="margin-bottom: 15px;">
+            <img width="100%" src="<% root_path %>/images/noavatar.gif" class="img-circle img-responsive">
+        </section>
+      </div>
 
-<p>
-  <b>Senha:</b>
-  <%= @usuario.senha %>
-</p>
+      <div class="col-xs-12 col-lg-8">
+        <section class="panel">
+          <div class="panel-body">
 
-<p>
-  <b>Administrador:</b>
-  <%= @usuario.administrador %>
-</p>
+            <% if @usuario == current_user %>
+                <a class="btn btn-primary" href="<%= edit_usuario_path(@usuario) %>" style="float:right;"><i class="fa fa-pencil-square-o"></i> Editar Perfil</a>
+            <% end %>
+            <p>
+              <b>Nome:</b>
+              <%= @usuario.nome %>
+            </p>
 
+            <p>
+              <b>Email:</b>
+              <%= @usuario.email %>
+            </p>
 
-<%= link_to 'Edit', edit_usuario_path(@usuario) %> |
-<%= link_to 'Back', usuarios_path %>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-lg-1"></div>
+      <div class="col-xs-12 col-lg-10">
+        <section class="panel">
+          <div class="panel-body">
+
+            <h2>Avaliações</h2>
+
+            <% if !@avaliacoes.any? %>
+                <div class="alert alert-warning fade in" style="margin-bottom: 0px !important;">
+
+                  O usuário ainda não realizou nenhuma avaliação.
+
+                </div>
+            <% else %>
+
+            <% end %>
+
+          </div>
+        </section>
+      </div>
+    </div>
 
 <% end %>
