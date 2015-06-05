@@ -26,8 +26,51 @@
 
             <script type="text/javascript">
                 $(document).ready(function() {
-                    $("#buscar_empresa").tokenInput("<%= autocomplete_empresas_path %>", {
-                        theme: "facebook"
+                    var imagem = true;
+
+                    $('#buscar_empresa').tokenInput("<%= autocomplete_empresas_path %>", {
+                        zIndex:1000,
+                        crossDomain: false,
+                        tokenLimit: 1,
+                        theme: "facebook",
+                        minChars: 3,
+                        hintText: "Digite um termo para a pesquisa do destinatário",
+                        noResultsText: "Nenhum resultado",
+                        searchingText: "Pesquisando...",
+                        onAdd: function(item){
+                            $(document.getElementsByName('carregando')).remove();
+                            imagem = true;
+                        },
+                        onDelete: function(item){
+                            imagem = true;
+                        },
+                        resultsFormatter: function(item) {
+                            var nome = item.name;
+
+                            var imagem = "<img src=" + item.img_src + " onError=\"this.onerror=null;this.src='/assets/user.jpg';\" class=\"rounded-corner img-token\" />"
+
+
+                            return "<li class=\"token-list\"><div class=\"image pull-left\">" + imagem + "</div><p>" + nome + "</p></li>"
+                        },
+                        noResult: function(item){
+                            $(document.getElementsByName('carregando')).remove();
+                            imagem = true;
+                        }
+                    });
+
+                    $("#token-input-buscar_empresa").keypress(function (){
+                        if (($("#token-input-buscar_empresa").val().length >=3) && imagem){
+                            $($("#token-input-buscar_empresa").parent().parent()).append('<%= image_tag "loading_blue.gif", :size=>'25x25', :name=>'carregando', :align => 'right'%>');
+                            imagem = false;
+                        }
+                    });
+
+                    $("#token-input-buscar_empresa").keyup(function(e){
+                        var keycode =  e.keyCode ? e.keyCode : e.which;
+                        if((keycode == 8) && ($("#token-input-buscar_empresa").val().length<3)){
+                            $(document.getElementsByName('carregando')).remove();
+                            imagem = true;
+                        }
                     });
                 });
             </script>

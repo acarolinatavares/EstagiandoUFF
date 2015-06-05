@@ -72,7 +72,7 @@ class AvaliacoesController < ApplicationController
   def autocomplete_empresas
     lista = []
     if params[:q].size >= 3
-      empresas = Usuario.empresas_tokeninput(params[:q])
+      empresas = Empresa.empresas_tokeninput(params[:q])
       empresas.each do |empresa|
         nome = empresa.nome
         lista.push :id => empresa.id,
