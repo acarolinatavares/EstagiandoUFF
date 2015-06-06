@@ -292,7 +292,7 @@
             <div class="col-xs-12 col-lg-12">
               <h2>Enviar Comentário</h2>
 
-              <%= render :partial => "comentarios/form" %>
+              <%= render :partial => "comentarios/form", :locals => {:avaliacao => @avaliacao}  %>
 
             </div>
           </div>

@@ -1,5 +1,12 @@
-        <h3 style="font-size: 12pt;"><a href="<%= usuario_path(comentario.usuario_id) %>"><%= comentario.usuario.nome %></a>
-        em <%= comentario.created_at.strftime("%d/%m/%Y às %H:%M") %>
-        </h3>
+<h3 style="font-size: 12pt;"><a href="<%= usuario_path(comentario.usuario_id) %>"><%= comentario.usuario.nome %></a>
+  em <%= comentario.created_at.strftime("%d/%m/%Y às %H:%M") %>
+</h3>
 
-        <%= comentario.texto %>
+<%= comentario.texto %>
+
+<%if can? :modify, comentario %>
+    <div class="btn-group btn-group-xs" role="group" style="float: right; margin-right: 20px;">
+      <%= link_to "", edit_comentario_path(comentario), :class => "btn btn-success fa fa-pencil-square-o"%>
+      <%= link_to "", comentario_path(comentario), :method => :delete, :class => "btn btn-danger fa fa-trash-o", :data => {:confirm => ("Tem certeza que deseja excluir essa empresa?")}%>
+    </div>
+<% end %>

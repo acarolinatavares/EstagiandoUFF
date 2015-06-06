@@ -38,13 +38,12 @@ class ComentariosController < ApplicationController
     @comentario = Comentario.find(params[:id])
   end
 
-  # POST /comentarios
-  # POST /comentarios.json
   def create
     @comentario = Comentario.new(params[:comentario])
+    @comentario.usuario_id = current_user.id
 
       if @comentario.save
-        redirect_to avaliacoes_path(@comentario.avaliacao_id), :flash => { :notice => 'Comentário postado com sucesso!.' }
+        redirect_to avaliacao_path(@comentario.avaliacao_id), :flash => { :notice => 'Comentário postado com sucesso!.' }
       else
         redirect_to :back, :flash => { :error => 'Erro ao postar comentário.' }
       end

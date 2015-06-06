@@ -14,8 +14,11 @@ class Ability
 
         can :create, Empresa
 
-        can :autocomplete_empresas, Avaliacao
+        can :create, Comentario
 
+        can :create, Avaliacao
+
+        can :autocomplete_empresas, Avaliacao
 
         can :modify, Usuario do |user1|
           user1 == user
