@@ -1,12 +1,49 @@
-<h3 style="font-size: 12pt;"><a href="<%= usuario_path(comentario.usuario_id) %>"><%= comentario.usuario.nome %></a>
-  em <%= comentario.created_at.strftime("%d/%m/%Y às %H:%M") %>
-</h3>
+<% if comentario.usuario == current_user %>
+    <li class="by-me">
 
-<%= comentario.texto %>
+      <div class="avatar pull-left">
+        <a href="<%= usuario_path(comentario.usuario_id) %>">
+          <img width="40px" src="<% root_path %>/images/noavatar.gif" class="img-circle img-responsive" style="margin-left: 5px">
+        </a>
+      </div>
 
-<%if can? :modify, comentario %>
-    <div class="btn-group btn-group-xs" role="group" style="float: right; margin-right: 20px;">
-      <%= link_to "", edit_comentario_path(comentario), :class => "btn btn-success fa fa-pencil-square-o"%>
-      <%= link_to "", comentario_path(comentario), :method => :delete, :class => "btn btn-danger fa fa-trash-o", :data => {:confirm => ("Tem certeza que deseja excluir essa empresa?")}%>
-    </div>
+      <div class="chat-content">
+        <div class="chat-meta"><a href="<%= usuario_path(comentario.usuario_id) %>"><%= comentario.usuario.nome %></a><span class="pull-right"><%= comentario.created_at.strftime("%d/%m/%Y às %H:%M") %></span></div>
+        <%= comentario.texto %>
+
+        <%if can? :modify, comentario %>
+            <br>
+            <div class="btn-group btn-group-xs" role="group" style="float: right; margin-top: 5px;">
+              <%= link_to "", edit_comentario_path(comentario), :class => "btn btn-success fa fa-pencil-square-o"%>
+              <%= link_to "", comentario_path(comentario), :method => :delete, :class => "btn btn-danger fa fa-trash-o", :data => {:confirm => ("Tem certeza que deseja excluir esse comentário?")}%>
+            </div>
+        <% end %>
+        <div class="clearfix"></div>
+      </div>
+    </li>
+
+<% else %>
+
+    <li class="by-other">
+
+      <div class="avatar pull-right">
+        <a href="<%= usuario_path(comentario.usuario_id) %>">
+          <img width="40px" src="<% root_path %>/images/noavatar.gif" class="img-circle img-responsive" style="margin-right: 5px">
+        </a>
+      </div>
+
+      <div class="chat-content">
+        <div class="chat-meta"><%= comentario.created_at.strftime("%d/%m/%Y às %H:%M") %><span class="pull-right"><a href="<%= usuario_path(comentario.usuario_id) %>"><%= comentario.usuario.nome %></a></span></div>
+        <%= comentario.texto %>
+
+        <%if can? :modify, comentario %>
+            <br>
+            <div class="btn-group btn-group-xs" role="group" style="float: right; margin-top: 5px;">
+              <%= link_to "", edit_comentario_path(comentario), :class => "btn btn-success fa fa-pencil-square-o"%>
+              <%= link_to "", comentario_path(comentario), :method => :delete, :class => "btn btn-danger fa fa-trash-o", :data => {:confirm => ("Tem certeza que deseja excluir esse comentário?")}%>
+            </div>
+        <% end %>
+        <div class="clearfix"></div>
+      </div>
+    </li>
 <% end %>

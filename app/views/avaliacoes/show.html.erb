@@ -279,10 +279,14 @@
 
             <% @avaliacao.comentarios.each do |comentario| %>
 
-                <hr>
+                <div class="padd sscroll">
 
-                <div style="margin-left: 20px;">
-                  <%= render :partial => "comentarios/comentario", :locals => {:comentario => comentario} %>
+                  <ul class="chats">
+
+                    <%= render :partial => "comentarios/comentario", :locals => {:comentario => comentario} %>
+
+                  </ul>
+
                 </div>
 
             <% end %>
