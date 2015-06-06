@@ -46,9 +46,6 @@
 
             <div class="col-xs-12 col-lg-8">
               <h2 style="margin-top: 0px;">Estatísticas</h2>
-
-
-
             </div>
 
           </div>
@@ -270,6 +267,38 @@
           </div>
         </section>
       </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-1"></div>
+      <div class="col-xs-12 col-lg-10">
+        <section class="panel">
+          <div class="panel-body">
+
+            <h1>Comentários</h1>
+
+            <% @avaliacao.comentarios.each do |comentario| %>
+
+                <hr>
+
+                <div style="margin-left: 20px;">
+                  <%= render :partial => "comentarios/comentario", :locals => {:comentario => comentario} %>
+                </div>
+
+            <% end %>
+
+            <hr>
+
+            <div class="col-xs-12 col-lg-12">
+              <h2>Enviar Comentário</h2>
+
+              <%= render :partial => "comentarios/form" %>
+
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
     </div>
 
 

@@ -1,25 +1,17 @@
-<p id="notice"><%= notice %></p>
+<% content_for :content do %>
 
-<p>
-  <b>Id:</b>
-  <%= @comentario.id %>
-</p>
+    <div class="row">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-10">
+        <section class="panel">
+          <div class="panel-body">
 
-<p>
-  <b>Texto:</b>
-  <%= @comentario.texto %>
-</p>
+            <%= render :partial => "comentarios/comentario", :locals => {:comentario => @comentario} %>
 
-<p>
-  <b>Data:</b>
-  <%= @comentario.data %>
-</p>
-
-<p>
-  <b>Usuario:</b>
-  <%= @comentario.usuario_id %>
-</p>
+          </div>
+        </section>
+      </div>
+    </div>
 
 
-<%= link_to 'Edit', edit_comentario_path(@comentario) %> |
-<%= link_to 'Back', comentarios_path %>
+<% end %>

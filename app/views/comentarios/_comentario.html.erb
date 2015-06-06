@@ -1,0 +1,5 @@
+        <h3 style="font-size: 12pt;"><a href="<%= usuario_path(comentario.usuario_id) %>"><%= comentario.usuario.nome %></a>
+        em <%= comentario.created_at.strftime("%d/%m/%Y às %H:%M") %>
+        </h3>
+
+        <%= comentario.texto %>

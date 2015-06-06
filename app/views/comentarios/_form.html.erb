@@ -1,33 +1,24 @@
 <%= form_for(@comentario) do |f| %>
-  <% if @comentario.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comentario.errors.count, "error") %> prohibited this comentario from being saved:</h2>
+    <% if @comentario.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@comentario.errors.count, "error") %> prohibited this comentario from being saved:</h2>
 
-      <ul>
-      <% @comentario.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @comentario.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+    <%= f.text_area :texto, :rows => 6, :style => 'width: 100%; padding: 10px'  %>
+
+    <br><br>
+
+    <div class="actions" style="text-align: center;">
+      <%= f.submit "Enviar Comentário", :class => 'btn btn-success'%>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :id %><br />
-    <%= f.number_field :id %>
-  </div>
-  <div class="field">
-    <%= f.label :texto %><br />
-    <%= f.text_field :texto %>
-  </div>
-  <div class="field">
-    <%= f.label :data %><br />
-    <%= f.date_select :data %>
-  </div>
-  <div class="field">
-    <%= f.label :usuario_id %><br />
-    <%= f.number_field :usuario_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
 <% end %>

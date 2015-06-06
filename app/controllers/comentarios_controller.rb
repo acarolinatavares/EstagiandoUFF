@@ -1,3 +1,4 @@
+# encoding : utf-8
 class ComentariosController < ApplicationController
   load_and_authorize_resource :except => [:index, :show]
 
@@ -42,15 +43,12 @@ class ComentariosController < ApplicationController
   def create
     @comentario = Comentario.new(params[:comentario])
 
-    respond_to do |format|
       if @comentario.save
-        format.html { redirect_to @comentario, notice: 'Comentario was successfully created.' }
-        format.json { render json: @comentario, status: :created, location: @comentario }
+        redirect_to avaliacoes_path(@comentario.avaliacao_id), :flash => { :notice => 'Comentário postado com sucesso!.' }
       else
-        format.html { render action: "new" }
-        format.json { render json: @comentario.errors, status: :unprocessable_entity }
+        redirect_to :back, :flash => { :error => 'Erro ao postar comentário.' }
       end
-    end
+
   end
 
   # PUT /comentarios/1

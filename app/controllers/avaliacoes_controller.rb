@@ -8,6 +8,7 @@ class AvaliacoesController < ApplicationController
 
   def show
     @avaliacao = Avaliacao.find(params[:id])
+    @comentario = Comentario.new
   end
 
   def new
