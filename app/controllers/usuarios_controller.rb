@@ -1,3 +1,4 @@
+# encoding : utf-8
 class UsuariosController < ApplicationController
 
   def home
@@ -45,7 +46,17 @@ class UsuariosController < ApplicationController
   end
 
   def create
+    if params[:usuario][:email].include? "@"
+      if !(params[:usuario][:email].include? "id.uff.br")
+        flash[:error] = "Email incorreto. Para se cadastrar no sistema, você precisa informar um email @id.uff.br."
+        redirect_to root_url and return
+      end
+    else
+      email = params[:usuario][:email]+ "@id.uff.br"
+    end
+
     @usuario = Usuario.new(params[:usuario])
+    @usuario.email = email
 
     respond_to do |format|
       if @usuario.save
@@ -83,8 +94,7 @@ class UsuariosController < ApplicationController
     @usuario = Usuario.find_by_confirm_token(params[:id])
     if @usuario
       @usuario.email_activate
-      flash[:success] = "Welcome to the Sample App! Your email has been confirmed. Please sign in to continue."
-      redirect_to root_path
+      redirect_to root_path, notice: "Welcome to the Sample App! Your email has been confirmed. Please sign in to continue."
     else
       flash[:error] = "Sorry. User does not exist"
       redirect_to root_url
