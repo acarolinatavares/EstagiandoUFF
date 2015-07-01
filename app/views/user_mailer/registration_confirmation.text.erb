@@ -1,5 +1,5 @@
-Hi <%= @usuario.nome %>,
+Olá <%= @usuario.nome %>,
 
-Thanks for registering! To confirm your registration click the URL below.
+Obrigado por se registrar! Para confirmar sua inscrição, clique na URL abaixo.
 
-<%= confirm_email_usuario_path(@usuario.confirm_token) %>
+<%= EstagiandoUFF::APP_PATH + confirm_email_usuario_path(@usuario.confirm_token) %>

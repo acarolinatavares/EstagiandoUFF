@@ -1,7 +1,11 @@
 class UsuariosController < ApplicationController
 
   def home
-    @usuario = Usuario.new
+    if logged_in?
+      redirect_to current_user
+    else
+      @usuario = Usuario.new
+    end
   end
 
   def index
