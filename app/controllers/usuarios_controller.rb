@@ -54,14 +54,18 @@ class UsuariosController < ApplicationController
     else
       email = params[:usuario][:email]+ "@id.uff.br"
     end
+    if Usuario.where(:email => email).any?
+      flash[:error] = "Já existe um cadastro com esse email."
+      redirect_to root_url and return
+    else
+      @usuario = Usuario.new(params[:usuario])
+      @usuario.email = email
 
-    @usuario = Usuario.new(params[:usuario])
-    @usuario.email = email
-
-    respond_to do |format|
-      if @usuario.save
-        UserMailer.registration_confirmation(@usuario).deliver
-        format.html { redirect_to cadastro_efetuado_usuarios_path, notice: @usuario.email }
+      respond_to do |format|
+        if @usuario.save
+          UserMailer.registration_confirmation(@usuario).deliver
+          format.html { redirect_to cadastro_efetuado_usuarios_path, notice: @usuario.email }
+        end
       end
     end
   end
