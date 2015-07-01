@@ -7,8 +7,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    email = params[:session][:email].include? "@id.uff.br" ? params[:session][:email] : params[:session][:email]+ "@id.uff.br"
-    @usuario = Usuario.where(:email=> email.downcase).first
+    params[:session][:email] = params[:session][:email]+ "@id.uff.br" unless params[:session][:email].include? "@id.uff.br"
+    @usuario = Usuario.where(:email=> params[:session][:email].downcase).first
     if @usuario && @usuario.senha == params[:session][:senha]
       if @usuario.email_confirmed
         sign_in(@usuario)
