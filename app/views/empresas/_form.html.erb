@@ -100,6 +100,12 @@
             });
 
             $(document).ready(function() {
+                $.ketchup.validation('email', 'Email incorreto.', function(form, el, value) {
+                    return ($.trim(value).length > 0) ? this.isEmail(value) : true
+                });
+                $.ketchup.validation('url', 'URL incorreta.', function(form, el, value) {
+                    return ($.trim(value).length > 0) ? this.isUrl(value) : true
+                });
                 $('#new_empresa').ketchup({},{
                     '.required'    : 'required',
                     '.email'       : 'email',
