@@ -1,9 +1,9 @@
 # encoding : utf-8
 class AvaliacoesController < ApplicationController
-  load_and_authorize_resource :except => [:index, :show]
+  load_and_authorize_resource :except => [:index, :show,:pesquisar]
 
   def index
-    @avaliacoes = Avaliacao.all
+    @avaliacoes = current_user.administrador ? Avaliacao.all : Avaliacao.moderadas
   end
 
   def show
@@ -66,6 +66,17 @@ class AvaliacoesController < ApplicationController
     end
     respond_to do |format|
       format.json { render :json => lista }
+    end
+  end
+
+  def pesquisar
+    @avaliacoes = current_user.administrador ? Avaliacao.all : Avaliacao.moderadas
+    @avaliacoes = @avaliacoes.por_nome_empresa(params[:empresa]) unless (params[:empresa].nil? || params[:empresa] == "")
+    @avaliacoes = @avaliacoes.por_nome_usuario(params[:usuario]) unless (params[:usuario].nil? || params[:usuario] == "")
+    @avaliacoes = @avaliacoes.por_situacao(params[:status]) unless (params[:status].nil? || params[:status] == "")
+
+    respond_to do |format|
+      format.html { render "index"}
     end
   end
 end

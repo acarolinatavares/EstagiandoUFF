@@ -6,6 +6,7 @@ class Ability
       can :create, Usuario
 
       can :read, :all
+      can :pesquisar, Avaliacao
     else
       if user.administrador?
         can :manage, :all

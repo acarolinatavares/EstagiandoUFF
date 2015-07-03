@@ -6,4 +6,18 @@ class Avaliacao < ActiveRecord::Base
   belongs_to :usuario
   has_many :comentarios
 
+  scope :por_nome_empresa, lambda { |empresa|
+    joins(:empresa).where("empresas.nome like ?", "%#{empresa}%")
+  }
+
+  scope :por_nome_usuario, lambda { |usuario|
+    joins(:usuario).where("usuarios.nome like ?", "%#{usuario}%")
+  }
+
+  scope :por_situacao, lambda { |situacao|
+    where(:situacao_avaliacao_id => situacao)
+  }
+
+  scope :moderadas, where(:situacao_avaliacao_id => SituacaoAvaliacao::ACEITA)
+
 end

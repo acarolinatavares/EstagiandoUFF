@@ -21,7 +21,11 @@ EstagiandoUFF::Application.routes.draw do
   resources :comentarios
 
 
-  resources :avaliacoes
+  resources :avaliacoes  do
+    collection do
+      get 'pesquisar'
+    end
+  end
 
 
   resources :SituacaoAvaliacoesController
