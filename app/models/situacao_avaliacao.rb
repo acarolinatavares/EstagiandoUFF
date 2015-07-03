@@ -1,7 +1,7 @@
 class SituacaoAvaliacao < ActiveRecord::Base
   attr_accessible :descricao, :id
 
-  belongs_to :avaliacao
+  has_many :avaliacoes
 
   AGUARDANDO_MODERACAO = 1
   ACEITA = 2

@@ -26,6 +26,7 @@ class AvaliacoesController < ApplicationController
     else
       @avaliacao = Avaliacao.new(params[:avaliacao])
       @avaliacao.usuario_id = current_user.id
+      @avaliacao.situacao_avaliacao_id = SituacaoAvaliacao::AGUARDANDO_MODERACAO
 
       if @avaliacao.save
         redirect_to @avaliacao, :notice => 'Avaliação cadastrada com sucesso!'
