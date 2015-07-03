@@ -60,6 +60,7 @@ class UsuariosController < ApplicationController
     else
       @usuario = Usuario.new(params[:usuario])
       @usuario.email = email
+      @usuario.administrador = 0
 
       respond_to do |format|
         if @usuario.save
