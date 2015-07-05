@@ -18,6 +18,16 @@ class UsuariosController < ApplicationController
     end
   end
 
+  def admin
+    @usuario = Usuario.find(params[:id])
+    @usuario.administrador = !@usuario.administrador
+    if @usuario.save
+      redirect_to usuarios_path, notice: "Tipo de conta do usuário #{@usuario.nome} salvo com sucesso."
+    else
+      redirect_to usuarios_path, :flash[:error] = "Erro ao alterar o tipo de conta do usuário #{@usuario.nome}: #{@usuario.errors}"
+    end
+  end
+
   def show
     @usuario = Usuario.find(params[:id])
     @avaliacoes = Avaliacao.where(:usuario_id => @usuario.id)
@@ -76,7 +86,7 @@ class UsuariosController < ApplicationController
 
     respond_to do |format|
       if @usuario.update_attributes(params[:usuario])
-        format.html { redirect_to @usuario, notice: 'Usuario was successfully updated.' }
+        format.html { redirect_to @usuario, notice: 'Dados editados com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -90,7 +100,7 @@ class UsuariosController < ApplicationController
     @usuario.destroy
 
     respond_to do |format|
-      format.html { redirect_to usuarios_url }
+      format.html { redirect_to usuarios_url, notice: "Usuário apagado." }
       format.json { head :no_content }
     end
   end
@@ -99,9 +109,9 @@ class UsuariosController < ApplicationController
     @usuario = Usuario.find_by_confirm_token(params[:id])
     if @usuario
       @usuario.email_activate
-      redirect_to root_path, notice: "Welcome to the Sample App! Your email has been confirmed. Please sign in to continue."
+      redirect_to root_path, notice: "Bem vindo(a) ao EstagiandoUFF! Sua conta foi verificada. Por favor, faça login para prosseguir."
     else
-      flash[:error] = "Sorry. User does not exist"
+      flash[:error] = "Usuário não existente."
       redirect_to root_url
     end
   end

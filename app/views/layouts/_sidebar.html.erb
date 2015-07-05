@@ -20,6 +20,14 @@
           <span>Avaliações</span>
         </a>
       </li>
+      <% if current_user.administrador %>
+          <li class="active">
+            <a class="" href="<%= usuarios_path%>">
+              <i class="fa fa-user fa-lg"></i>
+              <span>Usuários</span>
+            </a>
+          </li>
+      <%end%>
     </ul>
     <!-- sidebar menu end-->
   </div>

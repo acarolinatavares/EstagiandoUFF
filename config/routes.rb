@@ -14,6 +14,7 @@ EstagiandoUFF::Application.routes.draw do
     end
     member do
       get :confirm_email
+      post :admin
     end
   end
 
