@@ -56,15 +56,16 @@
                 <% @usuario.avaliacoes.each do |avaliacao| %>
 
                     <hr>
+                  <div class="row">
 
                     <div class="col-xs-12 col-lg-3">
                       <p style="font-size: 12pt;">
-                        <b>Avaliador:</b>
+                        <b>Empresa:</b>
                         <a href="<%= empresa_path(avaliacao.empresa.id) %>" target="_blank"><%= avaliacao.empresa.nome %></a>
                       </p>
-
                     </div>
-                    <div class="col-xs-12 col-lg-4">
+
+                    <div class="col-xs-12 col-lg-3">
                       <p style="font-size: 12pt;">
                         <b>Período na empresa:</b>
                         <% if !avaliacao.inicio_contrato.nil? %>
@@ -81,7 +82,7 @@
                       </p>
                     </div>
 
-                    <div class="col-xs-12 col-lg-4">
+                    <div class="col-xs-12 col-lg-3">
                       <p style="font-size: 12pt;">
                         <b>Cargo:</b>
                         <% if !avaliacao.titulo_cargo.nil? %>
@@ -92,10 +93,17 @@
                       </p>
                     </div>
 
+                    <div class="col-xs-12 col-lg-2">
+                      <p style="font-size: 12pt;">
+                        <b>Status:</b>
+                        <%= avaliacao.situacao_avaliacao.descricao%>
+                      </p>
+                    </div>
+
                     <div class="col-xs-12 col-lg-1">
                       <a class="btn btn-primary" style="float: right" href="<%= avaliacao_path(avaliacao.id) %>"><i class="fa fa-plus-square-o"></i></a>
                     </div>
-
+                  </div>
                 <% end %>
             <% end %>
 
