@@ -307,13 +307,16 @@
 
 
 
-    <% if @avaliacao.usuario == current_user %>
+    <% if @avaliacao.usuario == current_user || current_user.administrador %>
 
-        <% #TODO fazer botão de exclusão %>
-
-        <div class="btn-group" role="group" style="left: 50%; margin: 20px 0 20px -140px;">
-          <a class="btn btn-primary" href="<%= edit_avaliacao_path(@avaliacao) %>"><i class="fa fa-pencil-square-o"></i> Editar Avaliação</a>
-          <a class="btn btn-danger" href="#"><i class="fa fa-pencil-square-o"></i> Excluir Avaliação</a>
+        <div class="btn-group" role="group" style="left: 50%; margin: 1%;">
+          <% if !@avaliacao.moderada? %>
+            <%= link_to " Editar", edit_avaliacao_path(@avaliacao.id), :class => "btn btn-primary fa fa-pencil-square-o"%>
+          <%elsif current_user.administrador %>
+              <%= link_to " Aceitar", aceitar_avaliacao_path(@avaliacao), :method => :post, :class => "btn btn-info fa fa-check-square-o", :data => {:confirm => ("Tem certeza que deseja aceitar essa avaliação?")}%>
+              <%= link_to " Rejeitar", rejeitar_avaliacao_path(@avaliacao), :method => :post, :class => "btn btn-warning fa fa-times", :data => {:confirm => ("Tem certeza que deseja rejeitar essa avaliação?")}%>
+          <% end %>
+          <%= link_to " Excluir", avaliacao_path(@avaliacao), :method => :delete, :class => "btn btn-danger fa fa-trash-o", :data => {:confirm => ("Tem certeza que deseja excluir essa avaliação?")}%>
         </div>
     <% end %>
 

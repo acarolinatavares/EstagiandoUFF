@@ -20,4 +20,12 @@ class Avaliacao < ActiveRecord::Base
 
   scope :moderadas, where(:situacao_avaliacao_id => SituacaoAvaliacao::ACEITA)
 
+  def aceita?
+    return self.situacao_avaliacao_id == SituacaoAvaliacao::ACEITA
+  end
+
+  def moderada?
+    return (self.situacao_avaliacao_id == SituacaoAvaliacao::ACEITA ||  self.situacao_avaliacao_id == SituacaoAvaliacao::REJEITADA)
+  end
+
 end

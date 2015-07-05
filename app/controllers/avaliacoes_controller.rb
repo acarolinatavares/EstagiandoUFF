@@ -54,6 +54,26 @@ class AvaliacoesController < ApplicationController
     redirect_to root_path, :notice => 'Avaliação apagada com sucesso!.'
   end
 
+  def aceitar
+    @avaliacao = Avaliacao.find(params[:id])
+    @avaliacao.situacao_avaliacao_id = SituacaoAvaliacao::ACEITA
+    if @avaliacao.save
+      redirect_to avaliacoes_path, :notice => 'Avaliação aceita!'
+    else
+      redirect_to @avaliacao, :flash => { :error => "Erro ao fazer a moderação da avaliação. Erro: #{@avaliacao.errors}."}
+    end
+  end
+
+  def rejeitar
+    @avaliacao = Avaliacao.find(params[:id])
+    @avaliacao.situacao_avaliacao_id = SituacaoAvaliacao::REJEITADA
+    if @avaliacao.save
+      redirect_to avaliacoes_path, :notice => 'Avaliação rejeitada.'
+    else
+      redirect_to @avaliacao, :flash => { :error => "Erro ao fazer a moderação da avaliação. Erro: #{@avaliacao.errors}."}
+    end
+  end
+
   def autocomplete_empresas
     lista = []
     if params[:q].size >= 3

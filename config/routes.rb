@@ -25,6 +25,10 @@ EstagiandoUFF::Application.routes.draw do
     collection do
       get 'pesquisar'
     end
+    member do
+      post :aceitar
+      post :rejeitar
+    end
   end
 
 

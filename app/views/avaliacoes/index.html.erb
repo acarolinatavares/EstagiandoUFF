@@ -69,7 +69,9 @@
                     <div class="btn-group">
                       <%= link_to "", avaliacao_path(avaliacao.id), :class => "btn btn-primary fa fa-plus-square-o"%>
                       <% if can? :manage, Empresa %>
-                        <%= link_to "", edit_avaliacao_path(avaliacao.id), :class => "btn btn-success fa fa-pencil-square-o"%>
+                        <% if !@avaliacao.moderada? %>
+                            <%= link_to "", edit_avaliacao_path(avaliacao.id), :class => "btn btn-success fa fa-pencil-square-o"%>
+                        <%end%>
                         <%= link_to "", avaliacao_path(avaliacao), :method => :delete, :class => "btn btn-danger fa fa-trash-o", :data => {:confirm => ("Tem certeza que deseja excluir essa avaliação?")}%>
                       <% end %>
                     </div>
