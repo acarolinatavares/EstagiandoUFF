@@ -24,6 +24,10 @@ class Avaliacao < ActiveRecord::Base
     return self.situacao_avaliacao_id == SituacaoAvaliacao::ACEITA
   end
 
+  def rejeitada?
+    return self.situacao_avaliacao_id == SituacaoAvaliacao::REJEITADA
+  end
+
   def moderada?
     return (self.situacao_avaliacao_id == SituacaoAvaliacao::ACEITA ||  self.situacao_avaliacao_id == SituacaoAvaliacao::REJEITADA)
   end

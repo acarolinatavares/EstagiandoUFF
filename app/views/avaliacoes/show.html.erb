@@ -303,6 +303,29 @@
         </section>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-lg-1"></div>
+      <div class="col-xs-12 col-lg-10">
+        <section class="panel">
+          <div class="panel-body">
+
+            <div class="col-xs-12 col-lg-4">
+              <h2 style="margin-top: 0px;">Status</h2>
+              <% if @avaliacao.aceita? %>
+                  <span class="label label-success">Aceita</span>
+              <% elsif @avaliacao.rejeitada? %>
+                  <span class="label label-danger">Rejeitada</span>
+              <% else %>
+                  <span class="label label-info">Aguardando Moderação</span>
+              <% end %>
+            </div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+
     </div>
 
 
@@ -312,9 +335,10 @@
         <div class="btn-group" role="group" style="left: 50%; margin: 1%;">
           <% if !@avaliacao.moderada? %>
             <%= link_to " Editar", edit_avaliacao_path(@avaliacao.id), :class => "btn btn-primary fa fa-pencil-square-o"%>
-          <%elsif current_user.administrador %>
+            <%if current_user.administrador %>
               <%= link_to " Aceitar", aceitar_avaliacao_path(@avaliacao), :method => :post, :class => "btn btn-info fa fa-check-square-o", :data => {:confirm => ("Tem certeza que deseja aceitar essa avaliação?")}%>
               <%= link_to " Rejeitar", rejeitar_avaliacao_path(@avaliacao), :method => :post, :class => "btn btn-warning fa fa-times", :data => {:confirm => ("Tem certeza que deseja rejeitar essa avaliação?")}%>
+            <% end %>
           <% end %>
           <%= link_to " Excluir", avaliacao_path(@avaliacao), :method => :delete, :class => "btn btn-danger fa fa-trash-o", :data => {:confirm => ("Tem certeza que deseja excluir essa avaliação?")}%>
         </div>
