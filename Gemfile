@@ -5,6 +5,7 @@ gem 'mysql2'
 gem "paperclip"
 gem "cancan"
 gem "chartkick"
+gem 'masked_input-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

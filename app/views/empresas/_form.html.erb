@@ -80,6 +80,20 @@
                 </div>
               </div>
 
+              <div class="form-group">
+                <%= f.label :endereco , :class => 'col-lg-2 control-labell', :style => 'margin-top: 6px;' %>
+                <div class="col-lg-10">
+                  <%= f.text_field :endereco, :class => 'form-control', :placeholder => 'Endereço' %>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :telefone , :class => 'col-lg-2 control-labell', :style => 'margin-top: 6px;' %>
+                <div class="col-lg-10">
+                  <%= f.text_field :telefone, :class => 'form-control', :placeholder => 'Telefone' %>
+                </div>
+              </div>
+
               <!--<div class="form-group">-->
               <%#= f.file_field :avatar %>
               <!--</div>-->
@@ -112,6 +126,8 @@
                     '.url'         : 'url'
                 });
             });
+
+            $("#empresa_telefone").mask("(99) 9999-9999")
 
         </script>
 
