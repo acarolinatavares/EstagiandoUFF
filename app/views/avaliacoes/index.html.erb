@@ -67,12 +67,12 @@
                   <% end %>
                   <td>
                     <div class="btn-group">
-                      <%= link_to "", avaliacao_path(avaliacao.id), :class => "btn btn-primary fa fa-plus-square-o"%>
+                      <%= link_to "", avaliacao_path(avaliacao.id), :class => "btn btn-primary fa fa-plus-square-o", :title => "Detalhar"%>
                       <% if can? :manage, Empresa %>
                         <% if !avaliacao.moderada? %>
-                            <%= link_to "", edit_avaliacao_path(avaliacao.id), :class => "btn btn-success fa fa-pencil-square-o"%>
+                            <%= link_to "", edit_avaliacao_path(avaliacao.id), :class => "btn btn-success fa fa-pencil-square-o",, :title => "Editar"%>
                         <%end%>
-                        <%= link_to "", avaliacao_path(avaliacao), :method => :delete, :class => "btn btn-danger fa fa-trash-o", :data => {:confirm => ("Tem certeza que deseja excluir essa avaliação?")}%>
+                        <%= link_to "", avaliacao_path(avaliacao), :method => :delete, :class => "btn btn-danger fa fa-trash-o", :data => {:confirm => ("Tem certeza que deseja excluir essa avaliação?")}, :title => "Excluir"%>
                       <% end %>
                     </div>
                   </td>

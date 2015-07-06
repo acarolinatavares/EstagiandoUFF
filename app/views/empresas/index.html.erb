@@ -23,10 +23,10 @@
                   <td><a href="<%= empresa_path(empresa.id) %>"><%= empresa.nome %></a></td>
                   <td>
                     <div class="btn-group">
-                      <%= link_to "", empresa_path(empresa), :class => "btn btn-primary fa fa-plus-square-o"%>
+                      <%= link_to "", empresa_path(empresa), :class => "btn btn-primary fa fa-plus-square-o", :title => "Detalhar"%>
                       <%if can? :manage, Empresa %>
-                          <%= link_to "", edit_empresa_path(empresa), :class => "btn btn-success fa fa-pencil-square-o"%>
-                          <%= link_to "", empresa_path(empresa), :method => :delete, :class => "btn btn-danger fa fa-trash-o", :data => {:confirm => ("Tem certeza que deseja excluir essa empresa?")}%>
+                          <%= link_to "", edit_empresa_path(empresa), :class => "btn btn-success fa fa-pencil-square-o", :title => "Editar"%>
+                          <%= link_to "", empresa_path(empresa), :method => :delete, :class => "btn btn-danger fa fa-trash-o", :data => {:confirm => ("Tem certeza que deseja excluir essa empresa?")}, :title => "Excluir"%>
                       <% end %>
                     </div>
                   </td>
