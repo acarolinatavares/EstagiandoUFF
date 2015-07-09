@@ -87,15 +87,10 @@ class UsuariosController < ApplicationController
 
   def update
     @usuario = Usuario.find(params[:id])
-
-    respond_to do |format|
-      if @usuario.update_attributes(params[:usuario])
-        format.html { redirect_to @usuario, notice: 'Dados editados com sucesso.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @usuario.errors, status: :unprocessable_entity }
-      end
+    if @usuario.update_attributes(params[:usuario])
+      redirect_to @usuario, notice: 'Dados editados com sucesso.'
+    else
+      redirect_to edit_usuario_path(@usuario), :flash => {:error => "Os dados não puderam ser atualizados. Erro(s): #{@usuario.errors.messages}"}
     end
   end
 

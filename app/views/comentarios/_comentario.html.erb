@@ -3,7 +3,7 @@
 
       <div class="avatar pull-left">
         <a href="<%= usuario_path(comentario.usuario_id) %>">
-          <img width="40px" src="<% root_path %>/images/noavatar.gif" class="img-circle img-responsive" style="margin-left: 5px">
+          <%= image_tag("user.jpg", width: "30", height: "30", :class => 'img-circle img-responsive') %>
         </a>
       </div>
 
@@ -14,7 +14,6 @@
         <%if can? :modify, comentario %>
             <br>
             <div class="btn-group btn-group-xs" role="group" style="float: right; margin-top: 5px;">
-              <%= link_to "", edit_comentario_path(comentario), :class => "btn btn-success fa fa-pencil-square-o"%>
               <%= link_to "", comentario_path(comentario), :method => :delete, :class => "btn btn-danger fa fa-trash-o", :data => {:confirm => ("Tem certeza que deseja excluir esse comentário?")}%>
             </div>
         <% end %>
@@ -28,7 +27,7 @@
 
       <div class="avatar pull-right">
         <a href="<%= usuario_path(comentario.usuario_id) %>">
-          <img width="40px" src="<% root_path %>/images/noavatar.gif" class="img-circle img-responsive" style="margin-right: 5px">
+          <%= image_tag("user.jpg", width: "30", height: "30", :class => 'img-circle img-responsive') %>
         </a>
       </div>
 
@@ -39,7 +38,6 @@
         <%if can? :modify, comentario %>
             <br>
             <div class="btn-group btn-group-xs" role="group" style="float: right; margin-top: 5px;">
-              <%= link_to "", edit_comentario_path(comentario), :class => "btn btn-success fa fa-pencil-square-o"%>
               <%= link_to "", comentario_path(comentario), :method => :delete, :class => "btn btn-danger fa fa-trash-o", :data => {:confirm => ("Tem certeza que deseja excluir esse comentário?")}%>
             </div>
         <% end %>

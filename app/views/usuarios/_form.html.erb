@@ -17,7 +17,7 @@
               <div class="col-lg-10">
 
                 <div class="input-group">
-                  <%= f.text_field :email, :class => 'form-control', :placeholder => 'Email' %>
+                  <%= f.text_field:email,:class => 'form-control', :placeholder => 'Email', :value => @usuario.email.split("@")[0] %>
                   <span class="input-group-addon" id="basic-addon2">@id.uff.br</span>
                 </div>
 
@@ -26,12 +26,12 @@
             <div class="form-group">
               <label for="cadastroSenha" class="col-lg-2 control-label">Senha</label>
               <div class="col-lg-10">
-                <%= f.password_field :senha, :class => 'form-control', :placeholder => 'Senha' %>
+                <%= f.password_field :senha, :class => 'form-control', :placeholder => 'Senha', value: @usuario.senha %>
               </div>
             </div>
             <div class="form-group">
               <div style="text-align: center">
-                <%= f.submit "Cadastrar", :class => 'btn btn-success'%>
+                <%= f.submit "Salvar", :class => 'btn btn-success'%>
               </div>
             </div>
 
