@@ -30,7 +30,11 @@ class UsuariosController < ApplicationController
 
   def show
     @usuario = Usuario.find(params[:id])
-    @avaliacoes = Avaliacao.where(:usuario_id => @usuario.id)
+    if logged_in? && current_user.id == @usuario.id
+      @avaliacoes = Avaliacao.where(:usuario_id => @usuario.id)
+    else
+      @avaliacoes = Avaliacao.moderadas.do_usuario_id(@usuario.id)
+    end
 
     respond_to do |format|
       format.html # show.html.erb

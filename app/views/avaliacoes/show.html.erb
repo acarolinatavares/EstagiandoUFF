@@ -17,35 +17,31 @@
 
               <p style="font-size: 12pt;">
                 <b>Nome:</b>
-                <% if !@avaliacao.empresa.nome.nil? %>
+                <% if !@avaliacao.empresa.nome.nil? && !(@avaliacao.empresa.nome == "")%>
                     <%= @avaliacao.empresa.nome %>
                 <% else %>
-                    <i>não informado</i>
+                    <i> NÃO INFORMADO</i>
                 <% end %>
               </p>
 
               <p style="font-size: 12pt;">
                 <b>Email:</b>
-                <% if !@avaliacao.empresa.email.nil? %>
+                <% if !@avaliacao.empresa.email.nil? && !(@avaliacao.empresa.email == "") %>
                     <%= @avaliacao.empresa.email %>
                 <% else %>
-                    <i>não informado</i>
+                    <i> NÃO INFORMADO</i>
                 <% end %>
               </p>
 
               <p style="font-size: 12pt;">
                 <b>Site:</b>
-                <% if !@avaliacao.empresa.site.nil? %>
+                <% if !@avaliacao.empresa.site.nil? && !(@avaliacao.empresa.site == "") %>
                     <%= @avaliacao.empresa.site %>
                 <% else %>
-                    <i>não informado</i>
+                    <i> NÃO INFORMADO</i>
                 <% end %>
               </p>
 
-            </div>
-
-            <div class="col-xs-12 col-lg-8">
-              <h2 style="margin-top: 0px;">Estatísticas</h2>
             </div>
 
           </div>
@@ -68,28 +64,28 @@
 
                 <p style="font-size: 12pt;">
                   <b>Início do Contrato:</b>
-                  <% if !@avaliacao.inicio_contrato.nil? %>
+                  <% if !@avaliacao.inicio_contrato.nil? && !(@avaliacao.inicio_contrato == "") %>
                       <%= @avaliacao.inicio_contrato %>
                   <% else %>
-                      <i>não informado</i>
+                      <i> NÃO INFORMADO</i>
                   <% end %>
                 </p>
 
                 <p style="font-size: 12pt;">
                   <b>Cargo:</b>
-                  <% if !@avaliacao.titulo_cargo.nil? %>
+                  <% if !@avaliacao.titulo_cargo.nil? && !(@avaliacao.titulo_cargo == "") %>
                       <%= @avaliacao.titulo_cargo %>
                   <% else %>
-                      <i>não informado</i>
+                      <i> NÃO INFORMADO</i>
                   <% end %>
                 </p>
 
                 <p style="font-size: 12pt;">
                   <b>Carga Horária:</b>
-                  <% if !@avaliacao.carga_horaria.nil? %>
+                  <% if !@avaliacao.carga_horaria.nil? && !(@avaliacao.carga_horaria == "") %>
                       <%= @avaliacao.carga_horaria %> horas/semana
                   <% else %>
-                      <i>não informado</i>
+                      <i> NÃO INFORMADO</i>
                   <% end %>
                 </p>
 
@@ -99,28 +95,28 @@
 
                 <p style="font-size: 12pt;">
                   <b>Final do Contrato:</b>
-                  <% if !@avaliacao.final_contrato.nil? %>
+                  <% if !@avaliacao.final_contrato.nil? && !(@avaliacao.final_contrato == "") %>
                       <%= @avaliacao.final_contrato%>
                   <% else %>
-                      <i>não informado</i>
+                      <i> NÃO INFORMADO</i>
                   <% end %>
                 </p>
 
                 <p style="font-size: 12pt;">
                   <b>Area de Atuação:</b>
-                  <% if !@avaliacao.area_atuacao.nil? %>
+                  <% if !@avaliacao.area_atuacao.nil? && !(@avaliacao.area_atuacao == "") %>
                       <%= @avaliacao.area_atuacao%>
                   <% else %>
-                      <i>não informado</i>
+                      <i> NÃO INFORMADO</i>
                   <% end %>
                 </p>
 
                 <p style="font-size: 12pt;">
                   <b>Salário(bolsa):</b>
-                  <% if !@avaliacao.salario.nil? %>
+                  <% if !@avaliacao.salario.nil? && !(@avaliacao.salario == "") %>
                       R<%= number_to_currency(@avaliacao.salario) %>
                   <% else %>
-                      <i>não informado</i>
+                      <i> NÃO INFORMADO</i>
                   <% end %>
                 </p>
 
@@ -169,7 +165,7 @@
               <h3>Quais foram as suas principais atividades no estágio?</h3>
 
               <p style="margin: 10px;">
-                <% if !@avaliacao.atividades.nil? %>
+                <% if !@avaliacao.atividades.nil? && !(@avaliacao.atividades == "") %>
                     <%= @avaliacao.atividades %>
                 <% else %>
                     <i>Atividades não informadas.</i>
@@ -188,7 +184,7 @@
                 <% elsif @avaliacao.orientador == 2 %>
                     Eu <b>não possuia</b> um orientador.
                 <% else %>
-                    <i>Dado não informado.</i>
+                    <i>Dado  NÃO INFORMADO.</i>
                 <% end %>
               </p>
 
@@ -217,7 +213,7 @@
                 <% elsif @avaliacao.efetivacao == 3 %>
                     Fui <b>dispensado</b>.
                 <% else %>
-                    <i>Dado não informado.</i>
+                    <i> NÃO INFORMADO.</i>
                 <% end %>
               </p>
 
@@ -233,7 +229,7 @@
                 <% elsif @avaliacao.aprendizado == 2 %>
                     <b>Não aprendi muito</b> no estágio.
                 <% else %>
-                    <i>Dado não informado.</i>
+                    <i> NÃO INFORMADO.</i>
                 <% end %>
               </p>
 
@@ -242,8 +238,8 @@
               <h3>Você indicaria a mesma oportunidade de estágio para algum amigo seu?</h3>
 
               <p style="margin: 10px;">
-                <% if @avaliacao.aprendizado.nil? %>
-                    <i>Dado não informado.</i>
+                <% if @avaliacao.aprendizado.nil? || @avaliacao.aprendizado == ""%>
+                    <i> NÃO INFORMADO.</i>
                 <% elsif @avaliacao.aprendizado %>
                     <b>Indicaria</b>.
                 <% else %>
@@ -256,7 +252,7 @@
               <h3>Deseja fazer mais comentários sobre a sua experiência de estágio?</h3>
 
               <p style="margin: 10px;">
-                <% if !@avaliacao.comentarios_avaliador.nil? %>
+                <% if !@avaliacao.comentarios_avaliador.nil? && !(@avaliacao.comentarios_avaliador == "") %>
                     <%= @avaliacao.comentarios_avaliador %>
                 <% else %>
                     <i>O usuário não fez comentários.</i>
@@ -277,6 +273,8 @@
 
             <h1>Comentários</h1>
 
+            <% if @avaliacao.comentarios.any? %>
+
             <% @avaliacao.comentarios.each do |comentario| %>
 
                 <div class="padd sscroll">
@@ -290,20 +288,25 @@
                 </div>
 
             <% end %>
+            <%else%>
+              <i>Ainda não existem comentários nessa avaliação.</i>
+            <%end%>
 
             <hr>
 
+            <% if logged_in? %>
             <div class="col-xs-12 col-lg-12">
               <h2>Enviar Comentário</h2>
 
               <%= render :partial => "comentarios/form", :locals => {:avaliacao => @avaliacao}  %>
-
             </div>
+            <%end%>
           </div>
         </section>
       </div>
     </div>
 
+    <% if logged_in? %>
     <div class="row">
       <div class="col-lg-1"></div>
       <div class="col-xs-12 col-lg-10">
@@ -325,12 +328,13 @@
         </section>
       </div>
     </div>
+    <%end%>
 
     </div>
 
 
 
-    <% if @avaliacao.usuario == current_user || current_user.administrador %>
+    <% if logged_in? && (@avaliacao.usuario == current_user || current_user.administrador) %>
 
         <div class="btn-group" role="group" style="left: 50%; margin: 1%;">
           <% if !@avaliacao.moderada? %>

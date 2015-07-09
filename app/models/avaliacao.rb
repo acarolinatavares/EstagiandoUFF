@@ -18,6 +18,10 @@ class Avaliacao < ActiveRecord::Base
     where(:situacao_avaliacao_id => situacao)
   }
 
+  scope :do_usuario_id, lambda { |usuario_id|
+    where(:usuario_id => usuario_id)
+  }
+
   scope :moderadas, where(:situacao_avaliacao_id => SituacaoAvaliacao::ACEITA)
 
   def aceita?

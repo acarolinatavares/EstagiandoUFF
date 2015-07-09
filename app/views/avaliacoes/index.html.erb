@@ -25,7 +25,7 @@
                     <%= text_field_tag :usuario, nil, {:class => 'form-control',:placeholder => "Digite o nome do aluno"}%>
                   </div>
                 </div>
-                <% if current_user.administrador %>
+                <% if (logged_in? && current_user.administrador) %>
                     <div class="col-lg-12">
                       <label class="col-lg-2 control-label">Status</label>
                       <div class="col-lg-10" sqtyle="margin-top: 13px;">
@@ -51,7 +51,7 @@
               <th> Avaliador</th>
               <th style="width: 35px"><i class="fa fa-building"></i></th>
               <th> Empresa</th>
-              <% if current_user.administrador %>
+              <% if (logged_in? && current_user.administrador) %>
                   <th><i class="fa fa-flag"></i> Status</th>
               <% end %>
               <th><i class="fa fa-cogs"></i> Ações</th>
@@ -62,7 +62,7 @@
                   <td><%= link_to avaliacao.usuario.nome, usuario_path(avaliacao.usuario_id) %></td>
                   <td  style="padding: 0px;"><img width="100%" style="padding-left: 6px;" src="<% root_path %>/images/noavatar.gif"  class="img-circle img-responsive"> </td>
                   <td><%= avaliacao.empresa.nome%></td>
-                  <% if current_user.administrador %>
+                  <% if (logged_in? && current_user.administrador) %>
                       <td><%= avaliacao.situacao_avaliacao.descricao%></td>
                   <% end %>
                   <td>
@@ -70,7 +70,7 @@
                       <%= link_to "", avaliacao_path(avaliacao.id), :class => "btn btn-primary fa fa-plus-square-o", :title => "Detalhar"%>
                       <% if can? :manage, Empresa %>
                         <% if !avaliacao.moderada? %>
-                            <%= link_to "", edit_avaliacao_path(avaliacao.id), :class => "btn btn-success fa fa-pencil-square-o",, :title => "Editar"%>
+                            <%= link_to "", edit_avaliacao_path(avaliacao.id), :class => "btn btn-success fa fa-pencil-square-o", :title => "Editar"%>
                         <%end%>
                         <%= link_to "", avaliacao_path(avaliacao), :method => :delete, :class => "btn btn-danger fa fa-trash-o", :data => {:confirm => ("Tem certeza que deseja excluir essa avaliação?")}, :title => "Excluir"%>
                       <% end %>
